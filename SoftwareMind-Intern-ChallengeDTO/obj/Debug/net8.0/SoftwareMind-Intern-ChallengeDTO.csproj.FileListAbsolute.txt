@@ -1,0 +1,6 @@
+C:\Users\athos\source\repos\SoftwareMind-Intern-Challenge\SoftwareMind-Intern-ChallengeDTO\obj\Debug\net8.0\SoftwareMind-Intern-ChallengeDTO.csproj.AssemblyReference.cache
+C:\Users\athos\source\repos\SoftwareMind-Intern-Challenge\SoftwareMind-Intern-ChallengeDTO\obj\Debug\net8.0\SoftwareMind-Intern-ChallengeDTO.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\athos\source\repos\SoftwareMind-Intern-Challenge\SoftwareMind-Intern-ChallengeDTO\obj\Debug\net8.0\SoftwareMind-Intern-ChallengeDTO.AssemblyInfoInputs.cache
+C:\Users\athos\source\repos\SoftwareMind-Intern-Challenge\SoftwareMind-Intern-ChallengeDTO\obj\Debug\net8.0\SoftwareMind-Intern-ChallengeDTO.AssemblyInfo.cs
+C:\Users\athos\source\repos\SoftwareMind-Intern-Challenge\SoftwareMind-Intern-ChallengeDTO\obj\Debug\net8.0\SoftwareMind-Intern-ChallengeDTO.csproj.CoreCompileInputs.cache
+C:\Users\athos\source\repos\SoftwareMind-Intern-Challenge\SoftwareMind-Intern-ChallengeDTO\obj\Debug\net8.0\SoftwareMind-Intern-ChallengeDTO.sourcelink.json

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\SoftwareMind-Intern-Challenge.props" />
+</Project>
