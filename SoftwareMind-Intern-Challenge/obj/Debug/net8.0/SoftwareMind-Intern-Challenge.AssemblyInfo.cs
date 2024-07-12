@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SoftwareMind-Intern-Challenge")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+98d25875b040d8b5e15e68f09c448304a35bdb45")]
 [assembly: System.Reflection.AssemblyProductAttribute("SoftwareMind-Intern-Challenge")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SoftwareMind-Intern-Challenge")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
