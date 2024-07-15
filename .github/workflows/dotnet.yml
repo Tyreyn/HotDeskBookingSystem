@@ -1,0 +1,39 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: Build and test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        configuration: [Debug]
+    runs-on: windows-latest
+    env:
+      Solution_Name: SoftwareMind-Intern-Challenge/SoftwareMind-Intern-Challenge.sln
+      Project_Name: SoftwareMind-Intern-Challenge/SoftwareMind-Intern-Challenge.csproj
+      Test_Project_Path: SoftwareMind-Intern-Challenge-Api-Tests/SoftwareMind-Intern-Challenge-Api-Tests.csproj
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v1.0.2
+    - name: Restore the application
+      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
+      env:
+        Configuration: ${{ matrix.configuration }}
+    - name: Execute backend unit tests
+      run: dotnet test
+      working-directory: SoftwareMind-Intern-Challenge
