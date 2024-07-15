@@ -1,20 +1,53 @@
-﻿using SoftwareMind_Intern_ChallengeDTO.Data;
-using SoftwareMind_Intern_ChallengeDTO.DataObjects;
-
-namespace SoftwareMind_Intern_ChallengeBL.Operations
+﻿namespace SoftwareMind_Intern_ChallengeBL.Operations
 {
+    using Microsoft.EntityFrameworkCore;
+    using SoftwareMind_Intern_ChallengeDTO.Data;
+    using SoftwareMind_Intern_ChallengeDTO.DataObjects;
+
     /// <summary>
     /// Available operations for desk.
     /// </summary>
     /// <param name="hotDeskBookingSystemContext">
     /// Hot desk booking system context.
     /// </param>
-    public class DeskOperations(HotDeskBookingSystemContext hotDeskBookingSystemContext) : IDeskOperations
+    public class DeskOperations(HotDeskBookingSystemContext hotDeskBookingSystemContext)
     {
         /// <summary>
         /// Hot desk booking system context.
         /// </summary>
-        private readonly HotDeskBookingSystemContext DbContext = hotDeskBookingSystemContext;
+        private readonly HotDeskBookingSystemContext hotDeskBookingSystemContexts = hotDeskBookingSystemContext;
+
+        /// <summary>
+        /// Get all desks.
+        /// </summary>
+        /// <returns>
+        /// List of desk.
+        /// </returns>
+        public IList<Desk>? GetAllDesks()
+        {
+            return this.hotDeskBookingSystemContexts.Desks
+                .Include(d => d.Location!)
+                .Include(d => d.Reservations!)
+                .ToList(); // Null forgiving null.
+        }
+
+        /// <summary>
+        /// Get desk by id.
+        /// </summary>
+        /// <param name="deskId">
+        /// Desk ID to get.
+        /// </param>
+        /// <returns>
+        /// Found desk.
+        /// </returns>
+        public Desk? GetDeskById(int deskId)
+        {
+            return this.hotDeskBookingSystemContexts.Desks
+                .Include(d => d.Location!)
+                .Include(d => d.Reservations!)
+                .ThenInclude(d => d.Employee)
+                .SingleOrDefault(desk => desk.Id == deskId); // Null forgiving null.
+        }
 
         /// <summary>
         /// Add new desk.
@@ -27,61 +60,59 @@ namespace SoftwareMind_Intern_ChallengeBL.Operations
         /// </returns>
         public bool AddDesk(Desk newDesk)
         {
-            if (newDesk == null) return false;
-            this.DbContext.Add(newDesk);
-            this.DbContext.SaveChanges();
+            if (newDesk == null)
+            {
+                return false;
+            }
+
+            this.hotDeskBookingSystemContexts.Add(newDesk);
+            this.hotDeskBookingSystemContexts.SaveChanges();
+            return true;
+        }
+
+        /// <summary>
+        /// Update desk.
+        /// </summary>
+        /// <param name="updatedDesk">
+        /// Desk to be updated.
+        /// </param>
+        /// <returns>
+        /// True, if desk updated correctly, otherwise false.
+        /// </returns>
+        public bool UpdateDesk(Desk updatedDesk)
+        {
+            if (updatedDesk == null)
+            {
+                return false;
+            }
+
+            this.hotDeskBookingSystemContexts.Desks.Update(updatedDesk);
+            this.hotDeskBookingSystemContexts.SaveChanges();
             return true;
         }
 
         /// <summary>
         /// Delete desk.
         /// </summary>
-        /// <param name="deskId">
-        /// Desk ID to be deleted.
+        /// <param name="deskToBeDeleted">
+        /// Desk to be deleted.
         /// </param>
         /// <returns>
-        /// T1 - true, if deleted correctly, otherwise false.
-        /// T2 - message.
+        /// True, if deleted correctly, otherwise false.
         /// </returns>
-        public (bool, string) DeleteDesk(int deskId)
+        public bool DeleteDesk(Desk deskToBeDeleted)
         {
-            Desk deskToBeDeleted = this.DbContext.Desks.Single(location => location.Id == deskId);
-            if (deskToBeDeleted == null)
+            try
             {
-                return (false, "There is no desks with this ID");
+                this.hotDeskBookingSystemContexts.Desks.Remove(deskToBeDeleted);
+                this.hotDeskBookingSystemContexts.SaveChanges();
             }
-            else if (deskToBeDeleted.Reservations.Any())
+            catch
             {
-                return (false, "There is still reservations for this desk");
-            }
-
-            this.DbContext.Desks.Remove(deskToBeDeleted);
-            this.DbContext.SaveChanges();
-            return (true, "Desk deleted correctly");
-        }
-
-        /// <summary>
-        /// Change availability of desk.
-        /// </summary>
-        /// <param name="deskId">
-        /// Desk ID to be updated.
-        /// </param>
-        /// <returns>
-        /// T1 - true, if updated correctly, otherwise false.
-        /// T2 - message.
-        /// </returns>
-        public (bool, string) ChangeAvailability(int deskId)
-        {
-            Desk deskToBeChanged = this.DbContext.Desks.Single(desk => desk.Id == deskId);
-            if (deskToBeChanged == null)
-            {
-                return (false, "There is no desks with this ID");
+                return false;
             }
 
-            deskToBeChanged.IsAvailable = !deskToBeChanged.IsAvailable;
-            this.DbContext.Desks.Update(deskToBeChanged);
-            this.DbContext.SaveChanges();
-            return (true, "Desk updated correctly");
+            return true;
         }
     }
 }

@@ -1,23 +1,24 @@
-﻿using SoftwareMind_Intern_ChallengeDTO.Data;
-using SoftwareMind_Intern_ChallengeDTO.DataObjects;
-
-namespace SoftwareMind_Intern_ChallengeBL.Operations
+﻿namespace SoftwareMind_Intern_ChallengeBL.Operations
 {
+    using Microsoft.EntityFrameworkCore;
+    using SoftwareMind_Intern_ChallengeDTO.Data;
+    using SoftwareMind_Intern_ChallengeDTO.DataObjects;
+
     /// <summary>
     /// Available operations for location.
     /// </summary>
     /// <param name="hotDeskBookingSystemContext">
     /// Hot desk booking system context.
     /// </param>
-    public class LocationOperations(HotDeskBookingSystemContext hotDeskBookingSystemContext) : ILocationOperations
+    public class LocationOperations(HotDeskBookingSystemContext hotDeskBookingSystemContext)
     {
         /// <summary>
         /// Hot desk booking system context.
         /// </summary>
-        private readonly HotDeskBookingSystemContext DbContext = hotDeskBookingSystemContext;
+        private readonly HotDeskBookingSystemContext hotDeskBookingSystemContexts = hotDeskBookingSystemContext;
 
         /// <summary>
-        /// Add new location
+        /// Add new location.
         /// </summary>
         /// <param name="newLocation">
         /// New location.
@@ -27,10 +28,34 @@ namespace SoftwareMind_Intern_ChallengeBL.Operations
         /// </returns>
         public bool AddLocation(Location newLocation)
         {
-            if (newLocation == null) return false;
+            if (newLocation == null)
+            {
+                return false;
+            }
 
-            this.DbContext.Locations.Add(newLocation);
-            this.DbContext.SaveChanges();
+            this.hotDeskBookingSystemContexts.Locations.Add(newLocation);
+            this.hotDeskBookingSystemContexts.SaveChanges();
+            return true;
+        }
+
+        /// <summary>
+        /// Update location.
+        /// </summary>
+        /// <param name="updatedLocation">
+        /// Location to be updated.
+        /// </param>
+        /// <returns>
+        /// True, if location updated correctly, otherwise false.
+        /// </returns>
+        public bool UpdateLocation(Location updatedLocation)
+        {
+            if (updatedLocation == null)
+            {
+                return false;
+            }
+
+            this.hotDeskBookingSystemContexts.Locations.Update(updatedLocation);
+            this.hotDeskBookingSystemContexts.SaveChanges();
             return true;
         }
 
@@ -40,37 +65,54 @@ namespace SoftwareMind_Intern_ChallengeBL.Operations
         /// <returns>
         /// List of locations.
         /// </returns>
-        public List<Location> GetLocation()
+        public IList<Location>? GetLocations()
         {
-            List<Location> locations = this.DbContext.Locations.ToList();
+            IList<Location>? locations = this.hotDeskBookingSystemContexts.Locations
+                .Include(l => l.Desks!)
+                .ThenInclude(l => l.Reservations)
+                .ToList(); // Null forgiving null.
             return locations;
+        }
+
+        /// <summary>
+        /// Get location by ID.
+        /// </summary>
+        /// <param name="locationId">
+        /// Location ID to find.
+        /// </param>
+        /// <returns>
+        /// Location received.
+        /// </returns>
+        public Location? GetLocationById(int locationId)
+        {
+            Location? location = this.hotDeskBookingSystemContexts.Locations
+                .Include(l => l.Desks)
+                .SingleOrDefault(location => location.Id == locationId);
+            return location;
         }
 
         /// <summary>
         /// Delete location.
         /// </summary>
-        /// <param name="locationId">
-        /// Location ID to be deleted.
+        /// <param name="locationToBeDeleted">
+        /// Location to be deleted.
         /// </param>
         /// <returns>
-        /// T1 - true, if deleted correctly, otherwise false.
-        /// T2 - message.
+        /// True, if deleted correctly, otherwise false.
         /// </returns>
-        public (bool, string) DeleteLocation(int locationId)
+        public bool DeleteLocation(Location locationToBeDeleted)
         {
-            Location locationToBeDeleted = this.DbContext.Locations.Single(location => location.Id == locationId);
-            if (locationToBeDeleted == null)
+            try
             {
-                return (false, "There is no location with this ID");
+                this.hotDeskBookingSystemContexts.Locations.Remove(locationToBeDeleted);
+                this.hotDeskBookingSystemContexts.SaveChanges();
             }
-            else if (locationToBeDeleted.Desks.Any())
+            catch
             {
-                return (false, "There is desks in this location");
+                return false;
             }
 
-            this.DbContext.Locations.Remove(locationToBeDeleted);
-            this.DbContext.SaveChanges();
-            return (true, "Location deleted correctly");
+            return true;
         }
     }
 }

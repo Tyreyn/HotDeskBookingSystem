@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,13 +23,18 @@ namespace SoftwareMind_Intern_ChallengeDTO.DataObjects
         public bool IsAvailable { get; set; }
 
         /// <summary>
+        /// Location ID of Desk.
+        /// </summary>
+        public int LocationId { get; set; }
+
+        /// <summary>
         /// Location of Desk.
         /// </summary>
-        public Location? Location { get; set; }
+        public virtual Location? Location { get; set; }
 
         /// <summary>
         /// Collection of reservations for desk.
         /// </summary>
-        public IEnumerable<Reservation>? Reservations { get; set; }
+        public virtual IList<Reservation>? Reservations { get; set; } = null!;
     }
 }

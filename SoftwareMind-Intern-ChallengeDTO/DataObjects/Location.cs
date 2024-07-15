@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.ComponentModel.DataAnnotations;
 
 namespace SoftwareMind_Intern_ChallengeDTO.DataObjects
 {
@@ -13,8 +14,13 @@ namespace SoftwareMind_Intern_ChallengeDTO.DataObjects
         public int Id { get; set; }
 
         /// <summary>
+        /// Location name.
+        /// </summary>
+        public required string Name { get; set; }
+
+        /// <summary>
         /// List of desks in this location.
         /// </summary>
-        public IEnumerable<Desk>? Desks { get; set; }
+        public virtual ICollection<Desk>? Desks { get; set; } = null!;
     }
 }

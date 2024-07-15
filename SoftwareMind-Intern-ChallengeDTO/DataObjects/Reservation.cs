@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace SoftwareMind_Intern_ChallengeDTO.DataObjects
+﻿namespace SoftwareMind_Intern_ChallengeDTO.DataObjects
 {
     /// <summary>
     /// Reservation DTO.
@@ -8,34 +6,38 @@ namespace SoftwareMind_Intern_ChallengeDTO.DataObjects
     public class Reservation
     {
         /// <summary>
-        /// Reservation ID.
+        /// Gets or sets reservation ID.
         /// </summary>
-        [Key]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
-        /// Employee responsible for reservation.
+        /// Gets or sets employee ID responsible for reservation.
         /// </summary>
-        [Required]
-        public required Employee Employee { get; set; }
+        required public int EmployeeId { get; set; }
 
         /// <summary>
-        /// Reservation start data.
+        /// Gets or sets employee responsible for reservation.
         /// </summary>
-        [Required]
-        public DateTime DataStart { get; set; }
+        public virtual Employee? Employee { get; set; }
 
         /// <summary>
-        /// Reservation end data.
+        /// Gets or sets reservation start date.
         /// </summary>
-        [Required]
-        public DateTime DataEnd { get; set; }
+        public DateTime DateStart { get; set; }
 
         /// <summary>
-        /// Desk to be reserved.
+        /// Gets or sets reservation end date.
         /// </summary>
-        [Required]
-        public required Desk Desk { get; set; }
+        public DateTime DateEnd { get; set; }
 
+        /// <summary>
+        /// Gets or sets desk id to be reserved.
+        /// </summary>
+        required public int DeskId { get; set; }
+
+        /// <summary>
+        /// Gets or sets desk to be reserved.
+        /// </summary>
+        public virtual Desk? Desk { get; set; }
     }
 }

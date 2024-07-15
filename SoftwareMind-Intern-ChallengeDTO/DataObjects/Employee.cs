@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-
-namespace SoftwareMind_Intern_ChallengeDTO.DataObjects
+﻿namespace SoftwareMind_Intern_ChallengeDTO.DataObjects
 {
     /// <summary>
     /// Employee DTO.
@@ -9,21 +6,28 @@ namespace SoftwareMind_Intern_ChallengeDTO.DataObjects
     public class Employee
     {
         /// <summary>
-        /// Employee ID.
+        /// Gets or sets employee id.
         /// </summary>
-        [Key]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
-        /// Employee name.
+        /// Gets or sets employee email.
         /// </summary>
-        [Required]
-        public required string Name { get; set; }
+        public string? Email { get; set; }
 
         /// <summary>
-        /// Indicates whenever Employee is Admin.
+        /// Gets or sets employee password.
         /// </summary>
-        [DefaultValue(false)]
-        public bool IsAdmin { get; set; }
+        public string? Password { get; set; }
+
+        /// <summary>
+        /// Gets or sets employee role.
+        /// </summary>
+        public string? Role { get; set; }
+
+        /// <summary>
+        /// Gets or sets employees reservations.
+        /// </summary>
+        public virtual ICollection<Reservation>? Reservations { get; set; } = null!;
     }
 }
