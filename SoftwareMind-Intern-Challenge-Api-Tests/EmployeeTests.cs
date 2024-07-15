@@ -208,6 +208,7 @@
                 this.dbContext.Database.EnsureDeleted();
             }
 
+            Log.Logger.Information("\n\n" + new string('*', 100));
             this.testClient.Dispose();
             Log.CloseAndFlush();
         }

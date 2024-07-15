@@ -15,6 +15,7 @@ namespace SoftwareMind_Intern_Challenge_Api_Tests
     using SoftwareMind_Intern_Challenge_Api_Tests.TestsCaseSource;
     using SoftwareMind_Intern_ChallengeDTO.Data;
     using SoftwareMind_Intern_ChallengeDTO.DataObjects;
+    using Xunit.Sdk;
 
     /// <summary>
     /// Anonumous user tests.
@@ -82,11 +83,12 @@ namespace SoftwareMind_Intern_Challenge_Api_Tests
 
             // Act
             IList<Desk>? desks = simpleOperations.GetAllDesks();
-            if(desks == null)
+            if (desks == null)
             {
                 Assert.Pass("Anonymous user can't get desks");
             }
 
+            Log.Logger.Information("\n\n" + new string('*', 100));
         }
 
         /// <summary>
@@ -135,6 +137,7 @@ namespace SoftwareMind_Intern_Challenge_Api_Tests
                 JObject.Parse(responseString)["success"]!.ToString(),
                 Is.EqualTo(success),
                 assertMessage);
+            Log.Logger.Information("\n\n" + new string('*', 100));
         }
 
         /// <summary>
@@ -190,15 +193,17 @@ namespace SoftwareMind_Intern_Challenge_Api_Tests
                 JObject.Parse(responseString)["success"]!.ToString(),
                 Is.EqualTo(success),
                 assertMessage);
+            Log.Logger.Information("\n\n" + new string('*', 100));
         }
 
         /// <summary>
         /// Tear down after test.
         /// </summary>
-        [TearDown]
+        [OneTimeTearDown]
         public void TearDown()
         {
             Log.Logger.Information("Cleaning after test");
+            Log.Logger.Information("\n\n" + new string('*', 100));
             Log.CloseAndFlush();
         }
     }

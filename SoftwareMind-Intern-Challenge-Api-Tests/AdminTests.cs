@@ -122,6 +122,7 @@
         public void DeskOperationsScenario(string success, string message, int deskId)
         {
             // Arrange
+            Log.Logger.Information(new string('*', 20));
             Log.Logger.Information($"{TestContext.CurrentContext.Test.Name} - " +
                 $"{TestContext.CurrentContext.Test.Properties.Get("Description")}");
             string url = $"/Admin/DeleteDesk?deskId={deskId}";
@@ -221,6 +222,7 @@
                 this.dbContext.Database.EnsureDeleted();
             }
 
+            Log.Logger.Information("\n\n" + new string('*', 100));
             this.testClient.Dispose();
             Log.CloseAndFlush();
         }
