@@ -1,19 +1,17 @@
-﻿using SoftwareMind_Intern_ChallengeBL.Operations;
-using SoftwareMind_Intern_ChallengeDTO.DataObjects;
-
-namespace SoftwareMind_Intern_Challenge.Services
+﻿namespace SoftwareMind_Intern_Challenge.Services
 {
+    using SoftwareMind_Intern_ChallengeBL.Operations;
+    using SoftwareMind_Intern_ChallengeDTO.DataObjects;
+
     /// <summary>
     /// Location service.
     /// </summary>
     /// <param name="locationOperations">
     /// Available operations for location model.
     /// </param>
-    public class LocationService(LocationOperations locationOperations, DeskOperations deskOperations)
+    public class LocationService(LocationOperations locationOperations)
     {
         private readonly LocationOperations locationOperations = locationOperations;
-
-        private readonly DeskOperations deskOperations = deskOperations;
 
         /// <summary>
         /// Get all available locations.
@@ -21,20 +19,20 @@ namespace SoftwareMind_Intern_Challenge.Services
         /// <returns>
         /// List of available locations.
         /// </returns>
-        public IList<Location> GetLocations()
+        public IList<Location>? GetLocations()
         {
             return this.locationOperations.GetLocations().ToList();
         }
 
         /// <summary>
-        /// Add new location
+        /// Add new location.
         /// </summary>
-        /// <param name="newLocation"></param>
-        /// <returns></returns>
-        public bool AddNewLocation(Location newLocation)
+        /// <param name="newLocation">
+        /// New location to add.
+        /// </param>
+        public void AddNewLocation(Location newLocation)
         {
             this.locationOperations.AddLocation(newLocation);
-            return true;
         }
 
         /// <summary>
@@ -57,6 +55,7 @@ namespace SoftwareMind_Intern_Challenge.Services
             {
                 return (false, "There is no location with this ID");
             }
+
             location.Name = newName;
             this.locationOperations.UpdateLocation(location);
             return (true, "Location updated correctly");
@@ -74,7 +73,10 @@ namespace SoftwareMind_Intern_Challenge.Services
         /// </returns>
         public (bool, string) DeleteLocation(int locationId)
         {
-            if (locationId == 1) { return (false, "You can't remove 'unused desks' location!"); }
+            if (locationId == 1)
+            {
+                return (false, "You can't remove 'unused desks' location!");
+            }
 
             Location? location = this.locationOperations.GetLocationById(locationId);
 
@@ -82,13 +84,13 @@ namespace SoftwareMind_Intern_Challenge.Services
             {
                 return (false, "There is no location with this ID");
             }
-            else if (location.Desks != null)
+            else if (location.Desks.Count > 0)
             {
-                return (false, "There are still some desk in this location");
+                return (false, "There are still some desk in this location!");
             }
 
             this.locationOperations.DeleteLocation(location);
-            return (true, $"Location {locationId} ");
+            return (true, $"Location {locationId} deleted successfully");
         }
     }
 }

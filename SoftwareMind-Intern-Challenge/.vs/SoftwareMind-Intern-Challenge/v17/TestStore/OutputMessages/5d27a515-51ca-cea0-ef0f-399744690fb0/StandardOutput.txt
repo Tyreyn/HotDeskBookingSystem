@@ -1,0 +1,122 @@
+[20:21:51 FTL] Delete database after test.
+[20:21:51 INF] Setup API with in memory database
+[20:21:51 INF] Create API client
+info: Microsoft.EntityFrameworkCore.Update[30100]
+      Saved 3 entities to in-memory store.
+[20:21:51 INF] Starting test CheckIfUserCanSeeOwnReservations(False)
+[20:21:51 INF] Post request to http://localhost//AnonymousUser/Login?email=admin@admin.com&password=Admin*123 url
+info: SoftwareMind_Intern_Challenge.Security.BasicAuthenticationHandler[7]
+      BasicAuthentication was not authenticated. Failure message: Unauthorized
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
+      Failed to determine the https port for redirect.
+[20:21:51 INF] Status code from response OK
+[20:21:51 INF] Response: {"success":true,"message":"Basic YWRtaW5AYWRtaW4uY29tOkFkbWluKjEyMw=="}
+[20:21:51 INF] Response success value is as expected.
+ Actual: True, Expected: True
+[20:21:51 INF] Response message value is as expected.
+ Actual: True, Expected: True
+[20:21:51 INF] add new location: Test Room
+[20:21:51 INF] Post request to http://localhost///Admin/AddNewLocation?locationName=Test Room url
+info: Microsoft.EntityFrameworkCore.Update[30100]
+      Saved 1 entities to in-memory store.
+[20:21:51 INF] Status code from response OK
+[20:21:51 INF] Response: 
+[20:21:51 INF] add desk to location: 1
+[20:21:51 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=2 url
+info: Microsoft.EntityFrameworkCore.Update[30100]
+      Saved 1 entities to in-memory store.
+[20:21:51 INF] Status code from response OK
+[20:21:51 INF] Response: 
+[20:21:51 INF] add new location: Test Room
+[20:21:51 INF] Post request to http://localhost///Admin/AddNewLocation?locationName=Test Room url
+info: Microsoft.EntityFrameworkCore.Update[30100]
+      Saved 1 entities to in-memory store.
+[20:21:51 INF] Status code from response OK
+[20:21:51 INF] Response: 
+[20:21:51 INF] add desk to location: 1
+[20:21:51 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=3 url
+info: Microsoft.EntityFrameworkCore.Update[30100]
+      Saved 1 entities to in-memory store.
+[20:21:51 INF] Status code from response OK
+[20:21:51 INF] Response: 
+[20:21:51 INF] Post request to http://localhost///Employee/MakeReservation?deskId=1&dateStart=07.20.2024&dateEnd=07.25.2024 url
+info: Microsoft.EntityFrameworkCore.Update[30100]
+      Saved 1 entities to in-memory store.
+info: Microsoft.EntityFrameworkCore.Update[30100]
+      Saved 1 entities to in-memory store.
+[20:21:51 INF] Status code from response OK
+[20:21:51 INF] Response: {"success":true,"message":"Reservation has been made correctly"}
+[20:21:51 INF] Response success value is as expected.
+ Actual: True, Expected: True
+[20:21:51 INF] Response success value is as expected.
+ Actual: True, Expected: True
+[20:21:51 INF] Post request to http://localhost//AnonymousUser/CreateAccount?email=newuser@example.com&password=newuserpassword url
+info: Microsoft.EntityFrameworkCore.Update[30100]
+      Saved 1 entities to in-memory store.
+[20:21:51 INF] Status code from response OK
+[20:21:51 INF] Response: {"success":true,"message":"Account created successfully"}
+[20:21:51 INF] Response success value is as expected.
+ Actual: True, Expected: True
+[20:21:51 INF] Response success value is as expected.
+ Actual: True, Expected: True
+[20:21:51 INF] Post request to http://localhost//AnonymousUser/Login?email=newuser@example.com&password=newuserpassword url
+[20:21:51 INF] Status code from response OK
+[20:21:51 INF] Response: {"success":true,"message":"Basic bmV3dXNlckBleGFtcGxlLmNvbTpuZXd1c2VycGFzc3dvcmQ="}
+[20:21:51 INF] Response success value is as expected.
+ Actual: True, Expected: True
+[20:21:51 INF] Response message value is as expected.
+ Actual: True, Expected: True
+[20:21:51 INF] Post request to http://localhost///Employee/MakeReservation?deskId=2&dateStart=07.20.2024&dateEnd=07.25.2024 url
+info: Microsoft.EntityFrameworkCore.Update[30100]
+      Saved 1 entities to in-memory store.
+info: Microsoft.EntityFrameworkCore.Update[30100]
+      Saved 1 entities to in-memory store.
+[20:21:51 INF] Status code from response OK
+[20:21:51 INF] Response: {"success":true,"message":"Reservation has been made correctly"}
+[20:21:51 INF] Response success value is as expected.
+ Actual: True, Expected: True
+[20:21:51 INF] Response success value is as expected.
+ Actual: True, Expected: True
+[20:21:51 INF] Post request to http://localhost///Employee/GetAvailableDesks url
+[20:21:51 INF] Status code from response OK
+[20:21:51 INF] Response: [
+  {
+    "Id": 1,
+    "IsAvailable": false,
+    "LocationId": 2,
+    "Location": {
+      "Id": 2,
+      "Name": "Test Room",
+      "Desks": []
+    },
+    "Reservations": null
+  },
+  {
+    "Id": 2,
+    "IsAvailable": false,
+    "LocationId": 3,
+    "Location": {
+      "Id": 3,
+      "Name": "Test Room",
+      "Desks": []
+    },
+    "Reservations": [
+      {
+        "Id": 2,
+        "EmployeeId": 3,
+        "Employee": {
+          "Id": 3,
+          "Email": "newuser@example.com",
+          "Password": "newuserpassword",
+          "Role": "user",
+          "Reservations": []
+        },
+        "DateStart": "2024-07-20T00:00:00",
+        "DateEnd": "2024-07-25T00:00:00",
+        "DeskId": 2
+      }
+    ]
+  }
+]
+[20:21:51 INF] Cleaning after test
+[20:21:51 ERR] Delete database after test.

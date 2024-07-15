@@ -1,16 +1,33 @@
-﻿using SoftwareMind_Intern_ChallengeBL.Operations;
-using SoftwareMind_Intern_ChallengeDTO.Data;
-using SoftwareMind_Intern_ChallengeDTO.DataObjects;
-
-namespace SoftwareMind_Intern_Challenge.Services
+﻿namespace SoftwareMind_Intern_Challenge.Services
 {
+    using SoftwareMind_Intern_ChallengeBL.Operations;
+    using SoftwareMind_Intern_ChallengeDTO.DataObjects;
+
+    /// <summary>
+    /// Employee service.
+    /// </summary>
+    /// <param name="employeeOperations">
+    /// Available operations for employee model.
+    /// </param>
     public class EmployeeService(EmployeeOperations employeeOperations)
     {
         private readonly EmployeeOperations employeeOperations = employeeOperations;
 
-        public async Task<Employee?> GetEmployeeAndCheckCredentials(string email, string password)
+        /// <summary>
+        /// Get employee and check credentials.
+        /// </summary>
+        /// <param name="email">
+        /// Employee email to get.
+        /// </param>
+        /// <param name="password">
+        /// Employee password to get.
+        /// </param>
+        /// <returns>
+        /// Employee object.
+        /// </returns>
+        public Employee? GetEmployeeAndCheckCredentials(string email, string password)
         {
-            Employee employee = this.employeeOperations.GetEmployeeByEmail(email);
+            Employee? employee = this.employeeOperations.GetEmployeeByEmail(email);
             if (employee == null)
             {
                 return null;
@@ -25,9 +42,21 @@ namespace SoftwareMind_Intern_Challenge.Services
             }
         }
 
-        public async Task<bool> AddNewEmployee(string email, string password)
+        /// <summary>
+        /// Add new employee.
+        /// </summary>
+        /// <param name="email">
+        /// New employee email.
+        /// </param>
+        /// <param name="password">
+        /// New employee password.
+        /// </param>
+        /// <returns>
+        /// True, if employee added correctly, otherwise false.
+        /// </returns>
+        public bool AddNewEmployee(string email, string password)
         {
-            Employee employeeToCheck = this.employeeOperations.GetEmployeeByEmail(email);
+            Employee? employeeToCheck = this.employeeOperations.GetEmployeeByEmail(email);
             if (employeeToCheck == null)
             {
                 this.employeeOperations.AddNewEmployee(
@@ -35,7 +64,7 @@ namespace SoftwareMind_Intern_Challenge.Services
                     {
                         Email = email,
                         Password = password,
-                        Role = "user"
+                        Role = "user",
                     });
             }
             else

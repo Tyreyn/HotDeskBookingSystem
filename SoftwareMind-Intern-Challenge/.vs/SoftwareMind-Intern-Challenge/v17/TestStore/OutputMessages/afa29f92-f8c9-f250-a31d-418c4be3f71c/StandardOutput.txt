@@ -1,0 +1,743 @@
+[20:21:48 FTL] Delete database after test.
+[20:21:48 INF] Setup API with in memory database
+[20:21:48 INF] Create API client
+info: Microsoft.EntityFrameworkCore.Update[30100]
+      Saved 3 entities to in-memory store.
+[20:21:49 INF] Post request to http://localhost//AnonymousUser/Login?email=admin@admin.com&password=Admin*123 url
+info: SoftwareMind_Intern_Challenge.Security.BasicAuthenticationHandler[7]
+      BasicAuthentication was not authenticated. Failure message: Unauthorized
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
+      Failed to determine the https port for redirect.
+[20:21:49 INF] Status code from response OK
+[20:21:49 INF] Response: {"success":true,"message":"Basic YWRtaW5AYWRtaW4uY29tOkFkbWluKjEyMw=="}
+[20:21:49 INF] Response success value is as expected.
+ Actual: True, Expected: True
+[20:21:49 INF] Response message value is as expected.
+ Actual: True, Expected: True
+[20:21:49 INF] Starting test TryToGetDesksAsAdmin
+[20:21:49 INF] add desk to location: 1
+[20:21:49 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
+info: Microsoft.EntityFrameworkCore.Update[30100]
+      Saved 1 entities to in-memory store.
+[20:21:50 INF] Status code from response OK
+[20:21:50 INF] Response: 
+[20:21:50 INF] add desk to location: 1
+[20:21:50 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
+info: Microsoft.EntityFrameworkCore.Update[30100]
+      Saved 1 entities to in-memory store.
+[20:21:50 INF] Status code from response OK
+[20:21:50 INF] Response: 
+[20:21:50 INF] add desk to location: 1
+[20:21:50 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
+info: Microsoft.EntityFrameworkCore.Update[30100]
+      Saved 1 entities to in-memory store.
+[20:21:50 INF] Status code from response OK
+[20:21:50 INF] Response: 
+[20:21:50 INF] add desk to location: 1
+[20:21:50 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
+info: Microsoft.EntityFrameworkCore.Update[30100]
+      Saved 1 entities to in-memory store.
+[20:21:50 INF] Status code from response OK
+[20:21:50 INF] Response: 
+[20:21:50 INF] add desk to location: 1
+[20:21:50 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
+info: Microsoft.EntityFrameworkCore.Update[30100]
+      Saved 1 entities to in-memory store.
+[20:21:50 INF] Status code from response OK
+[20:21:50 INF] Response: 
+[20:21:50 INF] add desk to location: 1
+[20:21:50 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
+info: Microsoft.EntityFrameworkCore.Update[30100]
+      Saved 1 entities to in-memory store.
+[20:21:50 INF] Status code from response OK
+[20:21:50 INF] Response: 
+[20:21:50 INF] add desk to location: 1
+[20:21:50 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
+info: Microsoft.EntityFrameworkCore.Update[30100]
+      Saved 1 entities to in-memory store.
+[20:21:50 INF] Status code from response OK
+[20:21:50 INF] Response: 
+[20:21:50 INF] add desk to location: 1
+[20:21:50 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
+info: Microsoft.EntityFrameworkCore.Update[30100]
+      Saved 1 entities to in-memory store.
+[20:21:50 INF] Status code from response OK
+[20:21:50 INF] Response: 
+[20:21:50 INF] add desk to location: 1
+[20:21:50 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
+info: Microsoft.EntityFrameworkCore.Update[30100]
+      Saved 1 entities to in-memory store.
+[20:21:50 INF] Status code from response OK
+[20:21:50 INF] Response: 
+[20:21:50 INF] add desk to location: 1
+[20:21:50 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
+info: Microsoft.EntityFrameworkCore.Update[30100]
+      Saved 1 entities to in-memory store.
+[20:21:50 INF] Status code from response OK
+[20:21:50 INF] Response: 
+[20:21:50 INF] Post request to http://localhost///Employee/GetAvailableDesks url
+[20:21:50 INF] Status code from response OK
+[20:21:50 INF] Response: [
+  {
+    "Id": 1,
+    "IsAvailable": false,
+    "LocationId": 1,
+    "Location": {
+      "Id": 1,
+      "Name": "Unused desks",
+      "Desks": [
+        {
+          "Id": 2,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 3,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 4,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 5,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 6,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 7,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 8,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 9,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 10,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        }
+      ]
+    },
+    "Reservations": []
+  },
+  {
+    "Id": 2,
+    "IsAvailable": false,
+    "LocationId": 1,
+    "Location": {
+      "Id": 1,
+      "Name": "Unused desks",
+      "Desks": [
+        {
+          "Id": 1,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 3,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 4,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 5,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 6,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 7,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 8,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 9,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 10,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        }
+      ]
+    },
+    "Reservations": []
+  },
+  {
+    "Id": 3,
+    "IsAvailable": false,
+    "LocationId": 1,
+    "Location": {
+      "Id": 1,
+      "Name": "Unused desks",
+      "Desks": [
+        {
+          "Id": 1,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 2,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 4,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 5,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 6,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 7,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 8,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 9,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 10,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        }
+      ]
+    },
+    "Reservations": []
+  },
+  {
+    "Id": 4,
+    "IsAvailable": false,
+    "LocationId": 1,
+    "Location": {
+      "Id": 1,
+      "Name": "Unused desks",
+      "Desks": [
+        {
+          "Id": 1,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 2,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 3,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 5,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 6,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 7,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 8,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 9,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 10,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        }
+      ]
+    },
+    "Reservations": []
+  },
+  {
+    "Id": 5,
+    "IsAvailable": false,
+    "LocationId": 1,
+    "Location": {
+      "Id": 1,
+      "Name": "Unused desks",
+      "Desks": [
+        {
+          "Id": 1,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 2,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 3,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 4,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 6,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 7,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 8,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 9,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 10,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        }
+      ]
+    },
+    "Reservations": []
+  },
+  {
+    "Id": 6,
+    "IsAvailable": false,
+    "LocationId": 1,
+    "Location": {
+      "Id": 1,
+      "Name": "Unused desks",
+      "Desks": [
+        {
+          "Id": 1,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 2,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 3,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 4,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 5,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 7,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 8,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 9,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 10,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        }
+      ]
+    },
+    "Reservations": []
+  },
+  {
+    "Id": 7,
+    "IsAvailable": false,
+    "LocationId": 1,
+    "Location": {
+      "Id": 1,
+      "Name": "Unused desks",
+      "Desks": [
+        {
+          "Id": 1,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 2,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 3,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 4,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 5,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 6,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 8,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 9,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 10,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        }
+      ]
+    },
+    "Reservations": []
+  },
+  {
+    "Id": 8,
+    "IsAvailable": false,
+    "LocationId": 1,
+    "Location": {
+      "Id": 1,
+      "Name": "Unused desks",
+      "Desks": [
+        {
+          "Id": 1,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 2,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 3,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 4,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 5,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 6,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 7,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 9,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 10,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        }
+      ]
+    },
+    "Reservations": []
+  },
+  {
+    "Id": 9,
+    "IsAvailable": false,
+    "LocationId": 1,
+    "Location": {
+      "Id": 1,
+      "Name": "Unused desks",
+      "Desks": [
+        {
+          "Id": 1,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 2,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 3,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 4,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 5,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 6,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 7,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 8,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 10,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        }
+      ]
+    },
+    "Reservations": []
+  },
+  {
+    "Id": 10,
+    "IsAvailable": false,
+    "LocationId": 1,
+    "Location": {
+      "Id": 1,
+      "Name": "Unused desks",
+      "Desks": [
+        {
+          "Id": 1,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 2,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 3,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 4,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 5,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 6,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 7,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 8,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        },
+        {
+          "Id": 9,
+          "IsAvailable": false,
+          "LocationId": 1,
+          "Reservations": []
+        }
+      ]
+    },
+    "Reservations": []
+  }
+]
+[20:21:50 INF] Cleaning after test
+[20:21:50 ERR] Delete database after test.

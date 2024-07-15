@@ -1,36 +1,52 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.Extensions.Options;
-using SoftwareMind_Intern_Challenge.Services;
-using SoftwareMind_Intern_ChallengeBL.Operations;
-using SoftwareMind_Intern_ChallengeDTO.DataObjects;
-using System.Security.Claims;
-using System.Text;
-using System.Text.Encodings.Web;
-
-namespace SoftwareMind_Intern_Challenge.Security
+﻿namespace SoftwareMind_Intern_Challenge.Security
 {
-    public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
+    using System.Security.Claims;
+    using System.Text;
+    using System.Text.Encodings.Web;
+    using Microsoft.AspNetCore.Authentication;
+    using Microsoft.Extensions.Options;
+    using SoftwareMind_Intern_Challenge.Services;
+    using SoftwareMind_Intern_ChallengeDTO.DataObjects;
+
+    /// <summary>
+    /// Basic authentication handler.
+    /// </summary>
+    /// <param name="options">
+    /// Options used by basic authentication handler.
+    /// </param>
+    /// <param name="logger">
+    /// Logging system.
+    /// </param>
+    /// <param name="encoder">
+    /// Url character encoder.
+    /// </param>
+    /// <param name="clock">
+    /// System clock.
+    /// </param>
+    /// <param name="employeeService">
+    /// Employee service.
+    /// </param>
+    public class BasicAuthenticationHandler(
+        IOptionsMonitor<AuthenticationSchemeOptions> options,
+        ILoggerFactory logger,
+        UrlEncoder encoder,
+        ISystemClock clock,
+        EmployeeService employeeService) : AuthenticationHandler<AuthenticationSchemeOptions>(options, logger, encoder, clock)
     {
-        private readonly EmployeeService employeeService;
+        /// <summary>
+        /// Employee service.
+        /// </summary>
+        private readonly EmployeeService employeeService = employeeService;
 
-        public BasicAuthenticationHandler(
-            IOptionsMonitor<AuthenticationSchemeOptions> options,
-            ILoggerFactory logger,
-            UrlEncoder encoder,
-            ISystemClock clock,
-            EmployeeService employeeService) : base(options, logger, encoder, clock)
-        {
-            this.employeeService = employeeService;
-        }
-
+        /// <inheritdoc/>
         protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
         {
-            if (!Request.Headers.ContainsKey("Authorization"))
+            if (!this.Request.Headers.ContainsKey("Authorization"))
             {
                 return AuthenticateResult.Fail("Unauthorized");
             }
 
-            string authorizationHeader = Request.Headers["Authorization"];
+            string? authorizationHeader = this.Request.Headers["Authorization"];
             if (string.IsNullOrEmpty(authorizationHeader))
             {
                 return AuthenticateResult.Fail("Unauthorized");
@@ -50,8 +66,7 @@ namespace SoftwareMind_Intern_Challenge.Security
                 return AuthenticateResult.Fail("Unauthorized");
             }
 
-
-            Employee employee = await this.employeeService.GetEmployeeAndCheckCredentials(credentials[0], credentials[1]);
+            Employee? employee = this.employeeService.GetEmployeeAndCheckCredentials(credentials[0], credentials[1]);
 
             if (employee == null)
             {
@@ -59,16 +74,15 @@ namespace SoftwareMind_Intern_Challenge.Security
             }
             else
             {
-
                 var claims = new[]
                 {
                     new Claim(ClaimTypes.Email, employee.Email),
                     new Claim(ClaimTypes.NameIdentifier, employee.Id.ToString()),
-                    new Claim(ClaimTypes.Role, employee.Role)
+                    new Claim(ClaimTypes.Role, employee.Role),
                 };
                 var identity = new ClaimsIdentity(claims, "basic");
                 var claimsPrincipal = new ClaimsPrincipal(identity);
-                return AuthenticateResult.Success(new AuthenticationTicket(claimsPrincipal, Scheme.Name));
+                return AuthenticateResult.Success(new AuthenticationTicket(claimsPrincipal, this.Scheme.Name));
             }
         }
     }

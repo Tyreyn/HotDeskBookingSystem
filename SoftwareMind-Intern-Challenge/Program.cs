@@ -1,19 +1,15 @@
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using SoftwareMind_Intern_Challenge.Security;
 using SoftwareMind_Intern_Challenge.Services;
 using SoftwareMind_Intern_ChallengeBL.Operations;
-using SoftwareMind_Intern_ChallengeDTO.DataObjects;
-using Swashbuckle.AspNetCore.SwaggerGen;
-using System.Xml.XPath;
+using SoftwareMind_Intern_ChallengeDTO.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<SoftwareMind_Intern_ChallengeDTO.Data.HotDeskBookingSystemContext>(options => {
+builder.Services.AddDbContext<HotDeskBookingSystemContext>(options =>
+{
     options.UseMySQL(builder.Configuration.GetConnectionString("default"));
     options.EnableSensitiveDataLogging();
     options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
@@ -28,7 +24,7 @@ builder.Services.AddSwaggerGen(c =>
         Type = SecuritySchemeType.Http,
         Scheme = "basic",
         In = ParameterLocation.Header,
-        Description = "Basic Authorization header."
+        Description = "Basic Authorization header.",
     });
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
@@ -38,13 +34,14 @@ builder.Services.AddSwaggerGen(c =>
                 Reference = new OpenApiReference
                 {
                     Type = ReferenceType.SecurityScheme,
-                    Id = "basic"
-                }
+                    Id = "basic",
+                },
             },
-            new string[] {}
-        }
+            new string[] { }
+        },
     });
 });
+
 builder.Services.AddTransient<EmployeeOperations>();
 builder.Services.AddTransient<DeskOperations>();
 builder.Services.AddTransient<LocationOperations>();
@@ -57,7 +54,6 @@ builder.Services.AddTransient<ReservationService>();
 builder.Services.AddAuthentication("BasicAuthentication")
     .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 
-
 builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -69,7 +65,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwagger();
 }
 
 app.UseHttpsRedirection();
@@ -79,3 +75,10 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+/// <summary>
+/// Method acting as an anchor for the reference in the design of the test api.
+/// </summary>
+public partial class Program
+{
+}

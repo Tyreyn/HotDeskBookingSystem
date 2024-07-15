@@ -7,7 +7,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftwareMind-Intern-Challen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftwareMind-Intern-ChallengeDTO", "..\SoftwareMind-Intern-ChallengeDTO\SoftwareMind-Intern-ChallengeDTO.csproj", "{EB451102-09BC-4C6C-ADAF-8EF1C6F787B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareMind-Intern-ChallengeBL", "..\SoftwareMind-Intern-ChallengeBL\SoftwareMind-Intern-ChallengeBL.csproj", "{4DC51EB1-BC1E-4E19-97B5-580AE5409A36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftwareMind-Intern-ChallengeBL", "..\SoftwareMind-Intern-ChallengeBL\SoftwareMind-Intern-ChallengeBL.csproj", "{4DC51EB1-BC1E-4E19-97B5-580AE5409A36}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftwareMind-Intern-Challenge-Api-Tests", "..\SoftwareMind-Intern-Challenge-Api-Tests\SoftwareMind-Intern-Challenge-Api-Tests.csproj", "{AF995B98-EE56-4159-B82A-B3ADC583278C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{02C543A8-FDE0-4EAE-A0E1-BBE689ABD924}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +34,10 @@ Global
 		{4DC51EB1-BC1E-4E19-97B5-580AE5409A36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DC51EB1-BC1E-4E19-97B5-580AE5409A36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DC51EB1-BC1E-4E19-97B5-580AE5409A36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF995B98-EE56-4159-B82A-B3ADC583278C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF995B98-EE56-4159-B82A-B3ADC583278C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF995B98-EE56-4159-B82A-B3ADC583278C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF995B98-EE56-4159-B82A-B3ADC583278C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
