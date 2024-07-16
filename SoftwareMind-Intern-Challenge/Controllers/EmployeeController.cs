@@ -24,6 +24,7 @@
     [ApiController]
     [Route("[controller]")]
     [Authorize(Roles = "user, admin")]
+    //[AllowAnonymous]
     public class EmployeeController(
         ReservationService reservationService,
         DeskService deskService,
@@ -62,10 +63,12 @@
         [HttpGet("GetAvailableDesks")]
         public IActionResult GetAvailableDesks()
         {
-            string? userId = this.User?.FindFirst(ClaimTypes.NameIdentifier).Value.ToString();
+            var userIdClaims = this.User?.FindFirst(ClaimTypes.NameIdentifier);
+            string? userId = userIdClaims == null ? string.Empty : userIdClaims.Value.ToString();
+            var roleClaims = this.User?.FindFirst(ClaimTypes.Role);
+            string? role = userIdClaims == null ? string.Empty : roleClaims.Value.ToString();
             this.reservationService.CheckIfReservationChanged();
             IList<Desk>? desks = this.deskService.GetDesks();
-            string? role = this.User?.FindFirst(ClaimTypes.Role).Value.ToString();
 
             if (role != "admin")
             {

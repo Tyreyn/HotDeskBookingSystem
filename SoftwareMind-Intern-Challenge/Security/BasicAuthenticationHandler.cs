@@ -43,7 +43,9 @@
         {
             if (!this.Request.Headers.ContainsKey("Authorization"))
             {
-                return AuthenticateResult.Fail("Unauthorized");
+                var identity = new ClaimsIdentity();
+                var claimsPrincipal = new ClaimsPrincipal(identity);
+                return AuthenticateResult.Success(new AuthenticationTicket(claimsPrincipal, this.Scheme.Name));
             }
 
             string? authorizationHeader = this.Request.Headers["Authorization"];
