@@ -32,8 +32,9 @@ header {
 
 .location-list,
 .desk-list,
-.reservation-form,
-.admin-panel {
+.reservation-list,
+.admin-panel
+.reservation-entity{
     background-color: white;
     padding: 20px;
     margin: 20px;
@@ -66,4 +67,7 @@ input, select {
     max-width: 300px;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+table{
+
 }

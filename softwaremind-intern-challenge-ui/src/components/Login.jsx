@@ -59,7 +59,7 @@ const Login = () => {
                     onChange={handleInput}
                 />
                 <div id="user-email" className="sr-only">
-                    Please enter a valid username. It must contain at least 6 characters.
+                    Please enter a valid email, test@test.com
                 </div>
             </div>
             <div className="form_control">

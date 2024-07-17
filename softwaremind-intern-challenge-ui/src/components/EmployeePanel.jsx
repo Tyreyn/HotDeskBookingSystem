@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { Input, Container } from '../../node_modules/@mui/material/index';
 const EmployeePanel = ({ auth }) => {
     const [makeReservationInputs, setMakeReservationInputs] = useState({});
 
@@ -55,73 +55,73 @@ const EmployeePanel = ({ auth }) => {
     };
 
     return (
-        <div className="reservation-forms">
-            <div className="make-reservation">
+        <Container className="reservation-list">
+            <Container className="make-reservation">
                 <form onSubmit={handleMakeReservation}>
-                    <div class="row mb-3">
+                    <Container class="row mb-3">
                         <label>Enter desk id to be reserved:
-                            <input
+                            <Input
                                 type="text"
                                 name="deskId"
                                 value={makeReservationInputs.deskId || ""}
                                 onChange={handleChangeMakeReservation}
                             />
                         </label>
-                    </div>
-                    <div class="row mb-3">
+                    </Container>
+                    <Container class="row mb-3">
                         <label>Enter start date of reservation:
-                            <input
+                            <Input
                                 type="date"
                                 name="dateStart"
                                 value={makeReservationInputs.dateStart || ""}
                                 onChange={handleChangeMakeReservation}
                             />
                         </label>
-                    </div>
-                    <div class="row mb-3">
+                    </Container>
+                    <Container class="row mb-3">
                         <label>Enter end date of reservation:
-                            <input
+                            <Input
                                 type="date"
                                 name="dateEnd"
                                 value={makeReservationInputs.dateEnd || ""}
                                 onChange={handleChangeMakeReservation}
                             />
                         </label>
-                    </div>
-                    <div class="row mb-3">
+                    </Container>
+                    <Container class="row mb-3">
                         <input type="submit" />
-                    </div>
+                    </Container>
                 </form>
-            </div>
+            </Container>
 
-            <div className="change-desk">
+            <Container className="change-desk">
                 <form onSubmit={handleChangeDeskInReservation}>
-                    <div class="row mb-3">
+                    <Container class="row mb-3">
                         <label>Enter new desk ID:
-                            <input
+                            <Input
                                 type="text"
                                 name="newDeskId"
                                 value={makeReservationInputs.newDeskId || ""}
                                 onChange={handleChangeMakeReservation}
                             />
                         </label>
-                    </div>
-                    <div class="row mb-3">
+                    </Container>
+                    <Container class="row mb-3">
                         <label>Enter reservation ID:
-                            <input
+                            <Input
                                 type="text"
                                 name="reservationId"
                                 value={makeReservationInputs.reservationId || ""}
                                 onChange={handleChangeMakeReservation}
                             />
                         </label>
-                    </div>
-                    <div class="row mb-3">
+                    </Container>
+                    <Container class="row mb-3">
                         <input type="submit" />
-                    </div>
+                    </Container>
                 </form>
-            </div>
-        </div>
+            </Container>
+        </Container>
     );
 };
 

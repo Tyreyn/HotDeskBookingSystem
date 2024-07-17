@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Desk from './Entity/DeskEntity';
+import { TableHead, TableContainer, TableCell, TableRow, Input, Paper, TableBody, Button, Table } from "../../node_modules/@mui/material/index";
 
 
 const DeskDisplay = ({ auth }) => {
@@ -37,28 +38,34 @@ const DeskDisplay = ({ auth }) => {
     };
 
     return (
-        <div className="desk-list">
-            <table>
-                <tbody>
-                    <tr>
-                        <input
-                            type="text"
-                            value={nameFilter}
-                            onChange={(e) => handleFilterDesks(e.target.value)}
-                            placeholder="Filter desk by location"
-                        />
-                        <td><button onClick={handleShowDesks}>Refresh</button></td>
-                    </tr>
-                    <tr>
-                        <td style={{ textalign : "center" }}>
+        <TableContainer component={Paper}>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>
+                            <Input
+                                type="text"
+                                value={nameFilter}
+                                onChange={(e) => handleFilterDesks(e.target.value)}
+                                placeholder="Filter desk by location"
+                            />
+                        </TableCell>
+                        <TableCell>
+                            <Button onClick={handleShowDesks}>Refresh</Button>
+                        </TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    <TableRow>
+                        <TableCell style={{ textalign: "center" }}>
                             <div>
-                                {(filteredDesks.length >= 1 ? <Desk desks={filteredDesks}/> : <div>No location with this name</div>)}
+                                {(filteredDesks.length >= 1 ? <Desk desks={filteredDesks} /> : <div>No location with this name</div>)}
                             </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                        </TableCell>
+                    </TableRow>
+                </TableBody>
+            </Table>
+        </TableContainer >
     );
 };
 

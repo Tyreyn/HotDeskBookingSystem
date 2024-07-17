@@ -1,11 +1,12 @@
 import React from 'react';
+import { TableCell } from '../../../node_modules/@mui/material/index';
 const LocationEnity = ({ locations }) => {
     return (
         <>
             {
-                <td key={locations.Id}>
-                    <td><h5>Location Name: {locations.Name} </h5></td>
-                </td>
+                <TableCell key={locations.Id}>
+                    <h3>Location Name: {locations.Name} </h3>
+                </TableCell>
             }
         </>
     );

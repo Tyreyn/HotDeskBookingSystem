@@ -2,36 +2,33 @@ import AdminPanel from "./AdminPanel";
 import DeskDisplay from "./DeskDisplay";
 import EmployeePanel from "./EmployeePanel";
 import { useNavigate } from "react-router-dom";
+import { Container, Table, TableContainer, TableCell, TableRow, Paper, TableBody } from "../../node_modules/@mui/material/index";
 
 const AdminDashboard = ({ auth }) => (
-    <div>
-        <table>
-            <tbody>
-                <tr>
-                    <td><AdminPanel auth={auth}></AdminPanel></td>
-                    <td>
-                        <tr>
-                            <tr><EmployeePanel auth={auth}></EmployeePanel></tr>
-                            <tr><DeskDisplay auth={auth}></DeskDisplay></tr>
-                        </tr>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <TableContainer component={Paper}>
+        <Table>
+            <TableBody>
+                <TableRow>
+                    <TableCell ><AdminPanel auth={auth}></AdminPanel></TableCell>
+                    <TableCell ><EmployeePanel auth={auth}></EmployeePanel></TableCell>
+                </TableRow>
+                <TableRow><DeskDisplay auth={auth} style={{ maxWidth: "100%" }}></DeskDisplay></TableRow>
+            </TableBody>
+        </Table>
+    </TableContainer>
 );
 
 const UserDashboard = ({ auth }) => (
-    <div>
-        <table>
-            <tbody>
-                <tr>
-                    <td><EmployeePanel auth={auth}></EmployeePanel></td>
-                    <td><DeskDisplay auth={auth}></DeskDisplay></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <Container>
+        <Table>
+            <TableBody>
+                <TableRow>
+                    <TableRow><EmployeePanel auth={auth}></EmployeePanel></TableRow>
+                    <TableRow><DeskDisplay auth={auth}></DeskDisplay></TableRow>
+                </TableRow>
+            </TableBody>
+        </Table>
+    </Container>
 );
 
 
@@ -55,10 +52,10 @@ const Dashboard = () => {
     };
 
     return (
-        <div>
+        <Container maxWidth="xl">
             <button onClick={logoutAuth}>Logout</button>
             {renderDashboard()}
-        </div>
+        </Container>
     );
 }
 

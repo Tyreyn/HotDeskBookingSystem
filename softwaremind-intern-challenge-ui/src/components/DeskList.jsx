@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { Container } from '../../node_modules/@mui/material/index';
 const DeskList = (auth) => {
     const [newDeskCode, setNewDeskCode] = useState('');
     const [deskToDelete, setDeskToDelete] = useState('');
@@ -43,7 +43,7 @@ const DeskList = (auth) => {
     };
 
     return (
-        <div className="desk-list">
+        <Container className="desk-list">
             <h2>Desks</h2>
             <input
                 type="text"
@@ -60,7 +60,7 @@ const DeskList = (auth) => {
                 placeholder="Id of desk to be deleted."
             />
             <button onClick={handleDeleteDesk}>Delete</button>
-        </div>
+        </Container>
     );
 };
 
