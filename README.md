@@ -18,3 +18,42 @@ Start with API but if you feel you can do also frontend 'go for it'
 API must be written in .Net
 Create at least one unit test
 There are no restrictions in mythology/libraries etc
+
+## Pre-added values to the database 
+Employee admin = new Employee
+{
+
+    Id = 1,
+    Role = "admin",
+    Email = "admin@admin.com",
+    Password = "Admin*123",
+};
+
+Employee normalUser = new Employee
+{
+
+    Id = 2,
+    Role = "user",
+    Email = "test@test.com",
+    Password = "Test*123",
+};
+
+Location unusedDesks = new Location 
+{ 
+
+    Id = 1, Name = "Unused desks" 
+    
+};
+
+## Available operations in the UI
+Admin:
+- add new desk
+- add new location
+- delete desk
+- delete location
+- show desks(with reservation information)
+
+User:
+- make reservation
+- change desk in reservation
+- show desks(only with own reservation information)
