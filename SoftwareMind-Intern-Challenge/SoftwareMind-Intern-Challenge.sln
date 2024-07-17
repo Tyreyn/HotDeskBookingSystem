@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftwareMind-Intern-Challenge", "SoftwareMind-Intern-Challenge.csproj", "{9E26D68D-EFBC-48EC-84D9-E2948F79CC78}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5A83A8CB-3724-4F1F-BBCF-6A6F4C3B3E64} = {5A83A8CB-3724-4F1F-BBCF-6A6F4C3B3E64}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftwareMind-Intern-ChallengeDTO", "..\SoftwareMind-Intern-ChallengeDTO\SoftwareMind-Intern-ChallengeDTO.csproj", "{EB451102-09BC-4C6C-ADAF-8EF1C6F787B1}"
 EndProject

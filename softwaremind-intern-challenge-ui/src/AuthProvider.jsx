@@ -1,11 +1,32 @@
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-    const [token, setToken] = useState(localStorage.getItem("site") || "");
+    const [auth, setAuth] = useState(localStorage.getItem("auth") || "");
+    const [role, setRole] = useState(localStorage.getItem("role") || "");
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const authString = localStorage.getItem('auth');
+        const roleString = localStorage.getItem('role');
+        if (authString && roleString && authString != 'undefined')
+        {
+            setAuth(authString);
+            setRole(roleString);
+            navigate("/dashboard");
+        }
+        else
+        {
+            setAuth("");
+            setRole("");
+            localStorage.removeItem("auth");
+            localStorage.removeItem("role");
+            navigate("/login");
+        }
+    }, []);
+
     const loginAction = async (data) => {
         try {
             const response = await fetch(`https://localhost:7147/AnonymousUser/Login?email=${data.email}&password=${data.password}`, {
@@ -16,14 +37,35 @@ const AuthProvider = ({ children }) => {
                 body: JSON.stringify(data),
             });
             const res = await response.json();
-            if (res.message.includes('Basic')) {
-                setToken(res.message.split(" ")[1]);
-                localStorage.setItem("site", res.token);
+            if (res.message.includes('Basic'))
+            {
+                setAuth(res.message);
+                const dummyRequest = await fetch('https://localhost:7147/Admin/CheckIfAdmin', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: res.message,
+                    },
+                });
+
+                if (dummyRequest.status === 403)
+                {
+                    setRole("user");
+                    localStorage.setItem("role", "user");
+                }
+                else
+                {
+                    setRole("admin");
+                    localStorage.setItem("role", "admin");
+                }
+
+                localStorage.setItem("auth", res.message);
                 navigate("/dashboard");
                 return;
-            } else
+            }
+            else
             {
-                alert("Please provide a valid input");
+                alert(res.message);
             }
             throw new Error(res.message);
         } catch (err) {
@@ -53,14 +95,8 @@ const AuthProvider = ({ children }) => {
         }
     };
 
-    const logOut = () => {
-        setToken("");
-        localStorage.removeItem("site");
-        navigate("/login");
-    };
-
     return (
-        <AuthContext.Provider value={{ token, createAccountAction, loginAction, logOut }}>
+        <AuthContext.Provider value={{ auth, role, createAccountAction, loginAction }}>
             {children}
         </AuthContext.Provider>
     );

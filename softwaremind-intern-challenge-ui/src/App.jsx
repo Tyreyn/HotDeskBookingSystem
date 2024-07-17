@@ -3,21 +3,31 @@ import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Login from "./components/Login";
 import AuthProvider from "./AuthProvider";
-import View from "./components/View";
-function App() {
+import Dashboard from "./components/Dashboard";
+const App = () => {
+
     return (
         <div className="App">
-            <Router>
-                <AuthProvider>
-                    <Routes>
-                        <Route path="/login" element={<Login />} />
-                        <Route element={<ProtectedRoute />}>
-                            <Route path="/view" element={<View />} />
-                        </Route>
-                    </Routes>
-                </AuthProvider>
-            </Router>
+            <header>
+                <h1>Hot Desk Booking System</h1>
+            </header>
+            <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route element={<ProtectedRoute />}>
+                    <Route path="/dashboard" element={<Dashboard />} />
+                </Route>
+                <Route path="*" element={<Login />} />
+            </Routes>
         </div>
     );
 }
-export default App;
+
+const AppWithRouter = () => (
+    <Router>
+        <AuthProvider>
+            <App />
+        </AuthProvider>
+    </Router>
+);
+
+export default AppWithRouter;

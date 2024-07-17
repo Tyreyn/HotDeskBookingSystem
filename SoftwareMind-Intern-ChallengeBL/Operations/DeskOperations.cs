@@ -28,6 +28,7 @@
             return this.hotDeskBookingSystemContexts.Desks
                 .Include(d => d.Location!)
                 .Include(d => d.Reservations!)
+                .ThenInclude(r => r.Employee)
                 .ToList(); // Null forgiving null.
         }
 

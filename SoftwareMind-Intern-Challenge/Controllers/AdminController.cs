@@ -30,6 +30,18 @@
         private readonly LocationService locationService = locationService;
 
         /// <summary>
+        /// Post: /Admin/CheckIfAdmin.
+        /// </summary>
+        /// <returns>
+        /// OkObjectResult.
+        /// </returns>
+        [HttpPost("CheckIfAdmin")]
+        public IActionResult CheckIfAdmin()
+        {
+            return this.Ok();
+        }
+
+        /// <summary>
         /// Post: /Admin/AddNewDesk?locationId=[locationId].
         /// </summary>
         /// <param name="locationId">

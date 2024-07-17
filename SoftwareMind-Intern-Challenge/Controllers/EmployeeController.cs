@@ -24,7 +24,6 @@
     [ApiController]
     [Route("[controller]")]
     [Authorize(Roles = "user, admin")]
-    //[AllowAnonymous]
     public class EmployeeController(
         ReservationService reservationService,
         DeskService deskService,
@@ -141,7 +140,7 @@
         }
 
         /// <summary>
-        /// /Employee/MakeReservation?deskId=[deskId]&dataStart=[dateStart]&dataEnd=[dateEnd]
+        /// /Employee/MakeReservation?deskId=[deskId]&dateStart=[dateStart]&dateEnd=[dateEnd]
         /// Make reservation.
         /// </summary>
         /// <param name="deskId">
