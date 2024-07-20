@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Container, TableCell, TableRow, Button, TextField, FormGroup, InputLabel } from '../../node_modules/@mui/material/index';
 const DeskList = (auth) => {
     const [newDeskCode, setNewDeskCode] = useState('');
+    const [newDeskLocation, setNewDeskLocationCode] = useState('');
+    const [deskToChange, setDeskToChangeCode] = useState('');
     const [deskToDelete, setDeskToDelete] = useState('');
 
     const handleAddDesk = async () => {
@@ -25,6 +27,25 @@ const DeskList = (auth) => {
         else {
             alert("Something went wrong");
         }
+    };
+
+    const handleChangeDeskLocation = async () => {
+        event.preventDefault();
+        const headerAuth = auth.auth.auth.replaceAll('"', '');
+        const response = await fetch(`https://localhost:7147/Admin/ChangeDeskLocation?locationId=${newDeskLocation}&deskId=${deskToChange}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: headerAuth,
+            },
+        });
+        const res = await response.json();
+        if (response.status === 200) {
+            setDeskToChangeCode("");
+            setNewDeskLocationCode("");
+        }
+        alert(res.message);
+
     };
 
     const handleDeleteDesk = async () => {
@@ -62,6 +83,35 @@ const DeskList = (auth) => {
                             </TableCell>
                             <TableCell>
                                 <Button variant="outlined" color="secondary" type="submit">Add</Button>
+                            </TableCell>
+                        </TableRow>
+                    </form>
+                </FormGroup>
+            </Container>
+
+            <Container className="desk-list">
+                <FormGroup className="change-desk-location" class="col-md-6 col-md-offset-3 text-center">
+                    <InputLabel>Change desk location</InputLabel>
+                    <form onSubmit={handleChangeDeskLocation}>
+                        <TableRow>
+                            <TableCell>
+                                <TextField
+                                    type="text"
+                                    value={deskToChange}
+                                    onChange={(e) => setDeskToChangeCode(e.target.value)}
+                                    label="Desk to change"
+                                />
+                            </TableCell>
+                            <TableCell>
+                                <TextField
+                                    type="text"
+                                    value={newDeskLocation}
+                                    onChange={(e) => setNewDeskLocationCode(e.target.value)}
+                                    label="New desk location"
+                                />
+                            </TableCell>
+                            <TableCell>
+                                <Button variant="outlined" color="secondary" type="submit">Change</Button>
                             </TableCell>
                         </TableRow>
                     </form>

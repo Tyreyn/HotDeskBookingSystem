@@ -71,7 +71,7 @@
             int oldLocationId = deskToChange.LocationId;
             deskToChange.LocationId = newLocationId;
             deskToChange.Location = await this.locationOperations.GetLocationById(newLocationId);
-            deskToChange.IsAvailable = true;
+            deskToChange.IsAvailable = newLocationId == 1 ? false : true;
 
             if (deskToChange.Location == null)
             {
