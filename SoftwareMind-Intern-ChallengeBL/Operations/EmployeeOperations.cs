@@ -1,5 +1,6 @@
 ﻿namespace SoftwareMind_Intern_ChallengeBL.Operations
 {
+    using Microsoft.EntityFrameworkCore;
     using SoftwareMind_Intern_ChallengeDTO.Data;
     using SoftwareMind_Intern_ChallengeDTO.DataObjects;
 
@@ -9,7 +10,7 @@
     /// <param name="hotDeskBookingSystemContexts">
     /// Database context.
     /// </param>
-    public class EmployeeOperations(HotDeskBookingSystemContext hotDeskBookingSystemContexts)
+    public class EmployeeOperations(HotDeskBookingSystemContext hotDeskBookingSystemContexts) : IEmployeeOperations
     {
         /// <summary>
         /// Hot desk booking system context.
@@ -25,10 +26,10 @@
         /// <returns>
         /// Employee object.
         /// </returns>
-        public Employee? GetEmployeeByEmail(string email)
+        public async Task<Employee?> GetEmployeeByEmail(string email)
         {
-            Employee? employee = this.hotDeskBookingSystemContexts.Employees.SingleOrDefault(employee => employee.Email == email);
-            return employee;
+            return await this.hotDeskBookingSystemContexts.Employees
+                .SingleOrDefaultAsync(employee => employee.Email == email);
         }
 
         /// <summary>
@@ -37,10 +38,11 @@
         /// <param name="newEmployee">
         /// New Employee object to add.
         /// </param>
-        public void AddNewEmployee(Employee newEmployee)
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+        public async Task AddNewEmployee(Employee newEmployee)
         {
-            this.hotDeskBookingSystemContexts.Employees.Add(newEmployee);
-            this.hotDeskBookingSystemContexts.SaveChanges();
+            await this.hotDeskBookingSystemContexts.Employees.AddAsync(newEmployee);
+            await this.hotDeskBookingSystemContexts.SaveChangesAsync();
         }
     }
 }

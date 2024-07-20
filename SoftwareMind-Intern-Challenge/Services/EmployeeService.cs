@@ -25,9 +25,9 @@
         /// <returns>
         /// Employee object.
         /// </returns>
-        public Employee? GetEmployeeAndCheckCredentials(string email, string password)
+        public async Task<Employee?> GetEmployeeAndCheckCredentials(string email, string password)
         {
-            Employee? employee = this.employeeOperations.GetEmployeeByEmail(email);
+            Employee? employee = await this.employeeOperations.GetEmployeeByEmail(email);
             if (employee == null)
             {
                 return null;
@@ -54,12 +54,12 @@
         /// <returns>
         /// True, if employee added correctly, otherwise false.
         /// </returns>
-        public bool AddNewEmployee(string email, string password)
+        public async Task<bool> AddNewEmployee(string email, string password)
         {
-            Employee? employeeToCheck = this.employeeOperations.GetEmployeeByEmail(email);
+            Employee? employeeToCheck = await this.employeeOperations.GetEmployeeByEmail(email);
             if (employeeToCheck == null)
             {
-                this.employeeOperations.AddNewEmployee(
+                await this.employeeOperations.AddNewEmployee(
                     new Employee
                     {
                         Email = email,

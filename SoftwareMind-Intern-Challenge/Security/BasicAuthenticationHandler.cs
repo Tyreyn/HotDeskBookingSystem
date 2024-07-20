@@ -68,7 +68,7 @@
                 return AuthenticateResult.Fail("Unauthorized");
             }
 
-            Employee? employee = this.employeeService.GetEmployeeAndCheckCredentials(credentials[0], credentials[1]);
+            Employee? employee = await this.employeeService.GetEmployeeAndCheckCredentials(credentials[0], credentials[1]);
 
             if (employee == null)
             {

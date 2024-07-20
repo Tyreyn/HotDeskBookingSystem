@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Container, TableCell, TableRow, Button, TextField, FormGroup, InputLabel } from '../../node_modules/@mui/material/index';
+
 const LocationList = (auth) => {
     const [locationToDelete, setLocationToDelete] = useState('');
     const [newLocation, setNewLocation] = useState('');
@@ -42,24 +44,51 @@ const LocationList = (auth) => {
     };
 
     return (
-        <div className="location-list">
+        <TableCell className="desk-list">
             <h2>Locations</h2>
-            <input
-                type="text"
-                value={newLocation}
-                onChange={(e) => setNewLocation(e.target.value)}
-                placeholder="(Optional) set location name."
-            />
-            <button onClick={handleAddLocation}>Add</button>
-            <input
-                type="text"
-                value={locationToDelete}
-                onChange={(e) => setLocationToDelete(e.target.value)}
-                placeholder="Id of location to be deleted."
-            />
-            <button onClick={handleDeleteLocation}>Delete</button>
+            <Container className="desk-list">
+                <FormGroup className="add-location" class="col-md-6 col-md-offset-3 text-center">
+                    <InputLabel>Add new location</InputLabel>
+                    <form onSubmit={handleAddLocation}>
+                        <TableRow>
+                            <TableCell>
+                                <TextField
+                                    type="text"
+                                    value={newLocation}
+                                    onChange={(e) => setNewLocation(e.target.value)}
+                                    placeholder="(Optional) set location name."
+                                />
+                            </TableCell>
+                            <TableCell>
+                                <Button variant="outlined" color="secondary" type="submit">Add</Button>
+                            </TableCell>
+                        </TableRow>
+                    </form>
+                </FormGroup>
+            </Container>
 
-        </div>
+            <Container className="desk-list">
+                <FormGroup className="delete-location" class="col-md-6 col-md-offset-3 text-center">
+                    <InputLabel>Delete location</InputLabel>
+                    <form onSubmit={handleDeleteLocation}>
+                        <TableRow>
+                            <TableCell>
+                                <TextField
+                                    type="text"
+                                    value={locationToDelete}
+                                    onChange={(e) => setLocationToDelete(e.target.value)}
+                                    placeholder="Id of location to be deleted."
+                                />
+                            </TableCell>
+                            <TableCell>
+                                <Button variant="outlined" color="secondary" type="submit">Delete</Button>
+                            </TableCell>
+                        </TableRow>
+                    </form>
+                </FormGroup>
+            </Container>
+
+        </TableCell>
     );
 };
 

@@ -10,7 +10,7 @@
     /// <param name="hotDeskBookingSystemContext">
     /// Hot desk booking system context.
     /// </param>
-    public class LocationOperations(HotDeskBookingSystemContext hotDeskBookingSystemContext)
+    public class LocationOperations(HotDeskBookingSystemContext hotDeskBookingSystemContext) : ILocationOperations
     {
         /// <summary>
         /// Hot desk booking system context.
@@ -24,18 +24,12 @@
         /// New location.
         /// </param>
         /// <returns>
-        /// True, if location added correctly, otherwise false.
+        /// A <see cref="Task"/> representing the asynchronous operation.
         /// </returns>
-        public bool AddLocation(Location newLocation)
+        public async Task AddLocation(Location newLocation)
         {
-            if (newLocation == null)
-            {
-                return false;
-            }
-
-            this.hotDeskBookingSystemContexts.Locations.Add(newLocation);
-            this.hotDeskBookingSystemContexts.SaveChanges();
-            return true;
+            await this.hotDeskBookingSystemContexts.Locations.AddAsync(newLocation);
+            await this.hotDeskBookingSystemContexts.SaveChangesAsync();
         }
 
         /// <summary>
@@ -45,18 +39,12 @@
         /// Location to be updated.
         /// </param>
         /// <returns>
-        /// True, if location updated correctly, otherwise false.
+        /// A <see cref="Task"/> representing the asynchronous operation.
         /// </returns>
-        public bool UpdateLocation(Location updatedLocation)
+        public async Task UpdateLocation(Location updatedLocation)
         {
-            if (updatedLocation == null)
-            {
-                return false;
-            }
-
             this.hotDeskBookingSystemContexts.Locations.Update(updatedLocation);
-            this.hotDeskBookingSystemContexts.SaveChanges();
-            return true;
+            await this.hotDeskBookingSystemContexts.SaveChangesAsync();
         }
 
         /// <summary>
@@ -65,13 +53,12 @@
         /// <returns>
         /// List of locations.
         /// </returns>
-        public IList<Location>? GetLocations()
+        public async Task<IList<Location>?> GetLocations()
         {
-            IList<Location>? locations = this.hotDeskBookingSystemContexts.Locations
+            return await this.hotDeskBookingSystemContexts.Locations
                 .Include(l => l.Desks!)
                 .ThenInclude(l => l.Reservations)
-                .ToList(); // Null forgiving null.
-            return locations;
+                .ToListAsync(); // Null forgiving null;
         }
 
         /// <summary>
@@ -83,12 +70,11 @@
         /// <returns>
         /// Location received.
         /// </returns>
-        public Location? GetLocationById(int locationId)
+        public async Task<Location?> GetLocationById(int locationId)
         {
-            Location? location = this.hotDeskBookingSystemContexts.Locations
+            return await this.hotDeskBookingSystemContexts.Locations
                 .Include(l => l.Desks)
-                .SingleOrDefault(location => location.Id == locationId);
-            return location;
+                .SingleOrDefaultAsync(location => location.Id == locationId);
         }
 
         /// <summary>
@@ -98,21 +84,12 @@
         /// Location to be deleted.
         /// </param>
         /// <returns>
-        /// True, if deleted correctly, otherwise false.
+        /// A <see cref="Task"/> representing the asynchronous operation.
         /// </returns>
-        public bool DeleteLocation(Location locationToBeDeleted)
+        public async Task DeleteLocation(Location locationToBeDeleted)
         {
-            try
-            {
-                this.hotDeskBookingSystemContexts.Locations.Remove(locationToBeDeleted);
-                this.hotDeskBookingSystemContexts.SaveChanges();
-            }
-            catch
-            {
-                return false;
-            }
-
-            return true;
+            this.hotDeskBookingSystemContexts.Locations.Remove(locationToBeDeleted);
+            await this.hotDeskBookingSystemContexts.SaveChangesAsync();
         }
     }
 }

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Container } from '../../node_modules/@mui/material/index';
+import { Container, TableCell, TableRow, Button, TextField, FormGroup, InputLabel } from '../../node_modules/@mui/material/index';
 const DeskList = (auth) => {
     const [newDeskCode, setNewDeskCode] = useState('');
     const [deskToDelete, setDeskToDelete] = useState('');
 
     const handleAddDesk = async () => {
+        event.preventDefault();
         let requestParam = '?locationId=1';
         if (newDeskCode) {
             requestParam = `?locationId=${newDeskCode}`;
@@ -27,6 +28,7 @@ const DeskList = (auth) => {
     };
 
     const handleDeleteDesk = async () => {
+        event.preventDefault();
         const headerAuth = auth.auth.auth.replaceAll('"', '');
         const response = await fetch(`https://localhost:7147/Admin/DeleteDesk?deskId=${deskToDelete}`, {
             method: "POST",
@@ -43,24 +45,50 @@ const DeskList = (auth) => {
     };
 
     return (
-        <Container className="desk-list">
+        <TableCell className="desk-list">
             <h2>Desks</h2>
-            <input
-                type="text"
-                value={newDeskCode}
-                onChange={(e) => setNewDeskCode(e.target.value)}
-                placeholder="(Optional) Location for new desk"
-            />
-            <button onClick={handleAddDesk}>Add</button>
+            <Container className="desk-list">
+                <FormGroup className="add-desk" class="col-md-6 col-md-offset-3 text-center">
+                    <InputLabel>Add new desk</InputLabel>
+                    <form onSubmit={handleAddDesk}>
+                        <TableRow>
+                            <TableCell>
+                                <TextField
+                                    type="text"
+                                    value={newDeskCode}
+                                    onChange={(e) => setNewDeskCode(e.target.value)}
+                                    label="(Optional) Location for new desk"
+                                />
+                            </TableCell>
+                            <TableCell>
+                                <Button variant="outlined" color="secondary" type="submit">Add</Button>
+                            </TableCell>
+                        </TableRow>
+                    </form>
+                </FormGroup>
+            </Container>
 
-            <input
-                type="text"
-                value={deskToDelete}
-                onChange={(e) => setDeskToDelete(e.target.value)}
-                placeholder="Id of desk to be deleted."
-            />
-            <button onClick={handleDeleteDesk}>Delete</button>
-        </Container>
+            <Container className="desk-list">
+                <FormGroup className="delete-desk" class="col-md-6 col-md-offset-3 text-center">
+                    <InputLabel>Delete desk</InputLabel>
+                    <form onSubmit={handleDeleteDesk}>
+                        <TableRow>
+                            <TableCell>
+                                <TextField
+                                    type="text"
+                                    value={deskToDelete}
+                                    onChange={(e) => setDeskToDelete(e.target.value)}
+                                    label="Id of desk to be deleted."
+                                />
+                            </TableCell>
+                            <TableCell>
+                                <Button variant="outlined" color="secondary" type="submit">Delete</Button>
+                            </TableCell>
+                        </TableRow>
+                    </form>
+                </FormGroup>
+            </Container>
+        </TableCell >
     );
 };
 

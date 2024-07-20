@@ -1,67 +1,67 @@
-[10:56:10 FTL] Delete database after test.
-[10:56:10 INF] Setup API with in memory database
-[10:56:10 INF] Create API client
+[11:32:24 FTL] Delete database after test.
+[11:32:24 INF] Setup API with in memory database
+[11:32:24 INF] Create API client
 info: Microsoft.EntityFrameworkCore.Update[30100]
       Saved 3 entities to in-memory store.
-[10:56:10 INF] Starting test CheckIfUserCanSeeOwnReservations(True)
-[10:56:10 INF] Post request to http://localhost//AnonymousUser/Login?email=admin@admin.com&password=Admin*123 url
+[11:32:25 INF] Starting test CheckIfUserCanSeeOwnReservations(True)
+[11:32:25 INF] Post request to http://localhost//AnonymousUser/Login?email=admin@admin.com&password=Admin*123 url
 warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
       Failed to determine the https port for redirect.
-[10:56:10 INF] Status code from response OK
-[10:56:10 INF] Response: {"success":true,"message":"Basic YWRtaW5AYWRtaW4uY29tOkFkbWluKjEyMw=="}
-[10:56:10 INF] Response success value is as expected.
+[11:32:25 INF] Status code from response OK
+[11:32:25 INF] Response: {"success":true,"message":"Basic YWRtaW5AYWRtaW4uY29tOkFkbWluKjEyMw=="}
+[11:32:25 INF] Response success value is as expected.
  Actual: True, Expected: True
-[10:56:10 INF] Response message value is as expected.
+[11:32:25 INF] Response message value is as expected.
  Actual: True, Expected: True
-[10:56:10 INF] add new location: Test Room
-[10:56:10 INF] Post request to http://localhost///Admin/AddNewLocation?locationName=Test Room url
+[11:32:25 INF] add new location: Test Room
+[11:32:25 INF] Post request to http://localhost///Admin/AddNewLocation?locationName=Test Room url
 info: Microsoft.EntityFrameworkCore.Update[30100]
       Saved 1 entities to in-memory store.
-[10:56:10 INF] Status code from response OK
-[10:56:10 INF] Response: 
-[10:56:10 INF] add desk to location: 1
-[10:56:10 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=2 url
+[11:32:25 INF] Status code from response OK
+[11:32:25 INF] Response: 
+[11:32:25 INF] add desk to location: 1
+[11:32:25 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=2 url
 info: Microsoft.EntityFrameworkCore.Update[30100]
       Saved 1 entities to in-memory store.
-[10:56:10 INF] Status code from response OK
-[10:56:10 INF] Response: 
-[10:56:10 INF] add new location: Test Room
-[10:56:10 INF] Post request to http://localhost///Admin/AddNewLocation?locationName=Test Room url
+[11:32:25 INF] Status code from response OK
+[11:32:25 INF] Response: 
+[11:32:25 INF] add new location: Test Room
+[11:32:25 INF] Post request to http://localhost///Admin/AddNewLocation?locationName=Test Room url
 info: Microsoft.EntityFrameworkCore.Update[30100]
       Saved 1 entities to in-memory store.
-[10:56:10 INF] Status code from response OK
-[10:56:10 INF] Response: 
-[10:56:10 INF] add desk to location: 1
-[10:56:10 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=3 url
+[11:32:25 INF] Status code from response OK
+[11:32:25 INF] Response: 
+[11:32:25 INF] add desk to location: 1
+[11:32:25 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=3 url
 info: Microsoft.EntityFrameworkCore.Update[30100]
       Saved 1 entities to in-memory store.
-[10:56:10 INF] Status code from response OK
-[10:56:10 INF] Response: 
-[10:56:10 INF] Post request to http://localhost///Employee/MakeReservation?deskId=1&dateStart=07.21.2024&dateEnd=07.26.2024 url
+[11:32:25 INF] Status code from response OK
+[11:32:25 INF] Response: 
+[11:32:25 INF] Post request to http://localhost///Employee/MakeReservation?deskId=1&dateStart=07.25.2024&dateEnd=07.30.2024 url
 info: Microsoft.EntityFrameworkCore.Update[30100]
       Saved 1 entities to in-memory store.
 info: Microsoft.EntityFrameworkCore.Update[30100]
       Saved 1 entities to in-memory store.
-[10:56:10 INF] Status code from response OK
-[10:56:10 INF] Response: {"success":true,"message":"Reservation has been made correctly"}
-[10:56:10 INF] Response success value is as expected.
+[11:32:25 INF] Status code from response OK
+[11:32:25 INF] Response: {"success":true,"message":"Reservation has been made correctly"}
+[11:32:25 INF] Response success value is as expected.
  Actual: True, Expected: True
-[10:56:10 INF] Response success value is as expected.
+[11:32:25 INF] Response success value is as expected.
  Actual: True, Expected: True
-[10:56:10 INF] Post request to http://localhost///Employee/MakeReservation?deskId=2&dateStart=07.21.2024&dateEnd=07.26.2024 url
+[11:32:25 INF] Post request to http://localhost///Employee/MakeReservation?deskId=2&dateStart=07.25.2024&dateEnd=07.30.2024 url
 info: Microsoft.EntityFrameworkCore.Update[30100]
       Saved 1 entities to in-memory store.
 info: Microsoft.EntityFrameworkCore.Update[30100]
       Saved 1 entities to in-memory store.
-[10:56:10 INF] Status code from response OK
-[10:56:10 INF] Response: {"success":true,"message":"Reservation has been made correctly"}
-[10:56:10 INF] Response success value is as expected.
+[11:32:25 INF] Status code from response OK
+[11:32:25 INF] Response: {"success":true,"message":"Reservation has been made correctly"}
+[11:32:25 INF] Response success value is as expected.
  Actual: True, Expected: True
-[10:56:10 INF] Response success value is as expected.
+[11:32:25 INF] Response success value is as expected.
  Actual: True, Expected: True
-[10:56:10 INF] Post request to http://localhost///Employee/GetAvailableDesks url
-[10:56:10 INF] Status code from response OK
-[10:56:10 INF] Response: [
+[11:32:25 INF] Post request to http://localhost///Employee/GetAvailableDesks url
+[11:32:25 INF] Status code from response OK
+[11:32:25 INF] Response: [
   {
     "Id": 1,
     "IsAvailable": false,
@@ -84,8 +84,8 @@ info: Microsoft.EntityFrameworkCore.Update[30100]
             {
               "Id": 2,
               "EmployeeId": 1,
-              "DateStart": "2024-07-21T00:00:00",
-              "DateEnd": "2024-07-26T00:00:00",
+              "DateStart": "2024-07-25T00:00:00",
+              "DateEnd": "2024-07-30T00:00:00",
               "DeskId": 2,
               "Desk": {
                 "Id": 2,
@@ -101,8 +101,8 @@ info: Microsoft.EntityFrameworkCore.Update[30100]
             }
           ]
         },
-        "DateStart": "2024-07-21T00:00:00",
-        "DateEnd": "2024-07-26T00:00:00",
+        "DateStart": "2024-07-25T00:00:00",
+        "DateEnd": "2024-07-30T00:00:00",
         "DeskId": 1
       }
     ]
@@ -129,8 +129,8 @@ info: Microsoft.EntityFrameworkCore.Update[30100]
             {
               "Id": 1,
               "EmployeeId": 1,
-              "DateStart": "2024-07-21T00:00:00",
-              "DateEnd": "2024-07-26T00:00:00",
+              "DateStart": "2024-07-25T00:00:00",
+              "DateEnd": "2024-07-30T00:00:00",
               "DeskId": 1,
               "Desk": {
                 "Id": 1,
@@ -146,15 +146,15 @@ info: Microsoft.EntityFrameworkCore.Update[30100]
             }
           ]
         },
-        "DateStart": "2024-07-21T00:00:00",
-        "DateEnd": "2024-07-26T00:00:00",
+        "DateStart": "2024-07-25T00:00:00",
+        "DateEnd": "2024-07-30T00:00:00",
         "DeskId": 2
       }
     ]
   }
 ]
-[10:56:10 INF] Cleaning after test
-[10:56:10 ERR] Delete database after test.
-[10:56:10 INF] 
+[11:32:25 INF] Cleaning after test
+[11:32:25 ERR] Delete database after test.
+[11:32:25 INF] 
 
 ****************************************************************************************************

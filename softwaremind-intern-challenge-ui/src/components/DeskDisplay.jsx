@@ -38,7 +38,7 @@ const DeskDisplay = ({ auth }) => {
     };
 
     return (
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} style={{ height: "1000", innerWidth: "100%" }}>
             <Table>
                 <TableHead>
                     <TableRow>
@@ -51,7 +51,9 @@ const DeskDisplay = ({ auth }) => {
                             />
                         </TableCell>
                         <TableCell>
-                            <Button onClick={handleShowDesks}>Refresh</Button>
+                            <div>
+                                <Button onClick={handleShowDesks}>Refresh</Button>
+                            </div>
                         </TableCell>
                     </TableRow>
                 </TableHead>

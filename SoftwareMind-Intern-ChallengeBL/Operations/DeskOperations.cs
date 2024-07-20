@@ -10,7 +10,7 @@
     /// <param name="hotDeskBookingSystemContext">
     /// Hot desk booking system context.
     /// </param>
-    public class DeskOperations(HotDeskBookingSystemContext hotDeskBookingSystemContext)
+    public class DeskOperations(HotDeskBookingSystemContext hotDeskBookingSystemContext) : IDeskOperations
     {
         /// <summary>
         /// Hot desk booking system context.
@@ -23,13 +23,13 @@
         /// <returns>
         /// List of desk.
         /// </returns>
-        public IList<Desk>? GetAllDesks()
+        public async Task<IList<Desk>?> GetAllDesks()
         {
-            return this.hotDeskBookingSystemContexts.Desks
+            return await this.hotDeskBookingSystemContexts.Desks
                 .Include(d => d.Location!)
                 .Include(d => d.Reservations!)
                 .ThenInclude(r => r.Employee)
-                .ToList(); // Null forgiving null.
+                .ToListAsync(); // Null forgiving null.
         }
 
         /// <summary>
@@ -41,13 +41,13 @@
         /// <returns>
         /// Found desk.
         /// </returns>
-        public Desk? GetDeskById(int deskId)
+        public async Task<Desk?> GetDeskById(int deskId)
         {
-            return this.hotDeskBookingSystemContexts.Desks
+            return await this.hotDeskBookingSystemContexts.Desks
                 .Include(d => d.Location!)
                 .Include(d => d.Reservations!)
                 .ThenInclude(d => d.Employee)
-                .SingleOrDefault(desk => desk.Id == deskId); // Null forgiving null.
+                .SingleOrDefaultAsync(desk => desk.Id == deskId); // Null forgiving null.
         }
 
         /// <summary>
@@ -57,18 +57,12 @@
         /// Desk to add.
         /// </param>
         /// <returns>
-        /// True, if desk is added correctly, otherwise false.
+        /// A <see cref="Task"/> representing the asynchronous operation.
         /// </returns>
-        public bool AddDesk(Desk newDesk)
+        public async Task AddDesk(Desk newDesk)
         {
-            if (newDesk == null)
-            {
-                return false;
-            }
-
-            this.hotDeskBookingSystemContexts.Add(newDesk);
-            this.hotDeskBookingSystemContexts.SaveChanges();
-            return true;
+            await this.hotDeskBookingSystemContexts.AddAsync(newDesk);
+            await this.hotDeskBookingSystemContexts.SaveChangesAsync();
         }
 
         /// <summary>
@@ -78,18 +72,12 @@
         /// Desk to be updated.
         /// </param>
         /// <returns>
-        /// True, if desk updated correctly, otherwise false.
+        /// A <see cref="Task"/> representing the asynchronous operation.
         /// </returns>
-        public bool UpdateDesk(Desk updatedDesk)
+        public async Task UpdateDesk(Desk updatedDesk)
         {
-            if (updatedDesk == null)
-            {
-                return false;
-            }
-
             this.hotDeskBookingSystemContexts.Desks.Update(updatedDesk);
-            this.hotDeskBookingSystemContexts.SaveChanges();
-            return true;
+            await this.hotDeskBookingSystemContexts.SaveChangesAsync();
         }
 
         /// <summary>
@@ -99,21 +87,12 @@
         /// Desk to be deleted.
         /// </param>
         /// <returns>
-        /// True, if deleted correctly, otherwise false.
+        /// A <see cref="Task"/> representing the asynchronous operation.
         /// </returns>
-        public bool DeleteDesk(Desk deskToBeDeleted)
+        public async Task DeleteDesk(Desk deskToBeDeleted)
         {
-            try
-            {
-                this.hotDeskBookingSystemContexts.Desks.Remove(deskToBeDeleted);
-                this.hotDeskBookingSystemContexts.SaveChanges();
-            }
-            catch
-            {
-                return false;
-            }
-
-            return true;
+            this.hotDeskBookingSystemContexts.Desks.Remove(deskToBeDeleted);
+            await this.hotDeskBookingSystemContexts.SaveChangesAsync();
         }
     }
 }

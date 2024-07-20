@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input, Container } from '../../node_modules/@mui/material/index';
+import { Input, Container, FormGroup, TableCell, FormControl, TextField, InputLabel, Button, FormLabel, TableRow } from '../../node_modules/@mui/material/index';
 const EmployeePanel = ({ auth }) => {
     const [makeReservationInputs, setMakeReservationInputs] = useState({});
 
@@ -56,70 +56,86 @@ const EmployeePanel = ({ auth }) => {
 
     return (
         <Container className="reservation-list">
-            <Container className="make-reservation">
-                <form onSubmit={handleMakeReservation}>
-                    <Container class="row mb-3">
-                        <label>Enter desk id to be reserved:
-                            <Input
-                                type="text"
-                                name="deskId"
-                                value={makeReservationInputs.deskId || ""}
-                                onChange={handleChangeMakeReservation}
-                            />
-                        </label>
-                    </Container>
-                    <Container class="row mb-3">
-                        <label>Enter start date of reservation:
-                            <Input
-                                type="date"
-                                name="dateStart"
-                                value={makeReservationInputs.dateStart || ""}
-                                onChange={handleChangeMakeReservation}
-                            />
-                        </label>
-                    </Container>
-                    <Container class="row mb-3">
-                        <label>Enter end date of reservation:
-                            <Input
-                                type="date"
-                                name="dateEnd"
-                                value={makeReservationInputs.dateEnd || ""}
-                                onChange={handleChangeMakeReservation}
-                            />
-                        </label>
-                    </Container>
-                    <Container class="row mb-3">
-                        <input type="submit" />
-                    </Container>
-                </form>
+            <h2>Reservations</h2>
+            <Container className="reservation-list">
+                <FormGroup className="make-reservation" class="col-md-6 col-md-offset-3 text-center">
+                    <InputLabel>Make new reservation</InputLabel>
+                    <form onSubmit={handleMakeReservation}>
+                        <TableRow>
+                            <TableCell>
+                                <TextField
+                                    label="Enter desk id to be reserved"
+                                    type="text"
+                                    name="deskId"
+                                    value={makeReservationInputs.deskId || ""}
+                                    onChange={handleChangeMakeReservation}
+                                />
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                <TextField
+                                    helperText='Enter start date of reservation:'
+                                    name="dateStart"
+                                    type="date"
+                                    shrink
+                                    value={makeReservationInputs.dateStart || ""}
+                                    onChange={handleChangeMakeReservation}
+                                />
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                <TextField
+                                    helperText="Enter end date of reservation:"
+                                    type="date"
+                                    name="dateEnd"
+                                    value={makeReservationInputs.dateEnd || ""}
+                                    onChange={handleChangeMakeReservation}
+                                />
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                <Button variant="outlined" color="secondary" type="submit">Submit</Button>
+                            </TableCell>
+                        </TableRow>
+                    </form>
+                </FormGroup>
             </Container>
-
-            <Container className="change-desk">
-                <form onSubmit={handleChangeDeskInReservation}>
-                    <Container class="row mb-3">
-                        <label>Enter new desk ID:
-                            <Input
-                                type="text"
-                                name="newDeskId"
-                                value={makeReservationInputs.newDeskId || ""}
-                                onChange={handleChangeMakeReservation}
-                            />
-                        </label>
-                    </Container>
-                    <Container class="row mb-3">
-                        <label>Enter reservation ID:
-                            <Input
-                                type="text"
-                                name="reservationId"
-                                value={makeReservationInputs.reservationId || ""}
-                                onChange={handleChangeMakeReservation}
-                            />
-                        </label>
-                    </Container>
-                    <Container class="row mb-3">
-                        <input type="submit" />
-                    </Container>
-                </form>
+            <Container className="reservation-list">
+                <FormGroup className="change-desk">
+                    <InputLabel>Change desk in reservation</InputLabel>
+                    <form onSubmit={handleChangeDeskInReservation}>
+                        <TableRow>
+                            <TableCell>
+                                <TextField
+                                    label="Enter new desk id to be changed"
+                                    type="text"
+                                    name="newDeskId"
+                                    value={makeReservationInputs.newDeskId || ""}
+                                    onChange={handleChangeMakeReservation}
+                                />
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                <TextField
+                                    label="Enter reservation id to be changed"
+                                    type="text"
+                                    name="reservationId"
+                                    value={makeReservationInputs.reservationId || ""}
+                                    onChange={handleChangeMakeReservation}
+                                />
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                <Button variant="outlined" color="secondary" type="submit">Submit</Button>
+                            </TableCell>
+                        </TableRow>
+                    </form>
+                </FormGroup>
             </Container>
         </Container>
     );

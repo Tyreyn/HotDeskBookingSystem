@@ -36,9 +36,9 @@
         /// T2 - message.
         /// </returns>
         [HttpPost("Login")]
-        public IActionResult Login(string email, string password)
+        public async Task<IActionResult> Login(string email, string password)
         {
-            Employee? employee = this.employeeService.GetEmployeeAndCheckCredentials(email, password);
+            Employee? employee = await this.employeeService.GetEmployeeAndCheckCredentials(email, password);
 
             if (employee != null)
             {
@@ -66,9 +66,9 @@
         /// T2 - message.
         /// </returns>
         [HttpPost("CreateAccount")]
-        public IActionResult CreateAccount(string email, string password)
+        public async Task<IActionResult> CreateAccount(string email, string password)
         {
-            if (!this.employeeService.AddNewEmployee(email, password))
+            if (!await this.employeeService.AddNewEmployee(email, password))
             {
                 return this.Ok(new { Success = false, Message = "There is already user with this email" });
             }

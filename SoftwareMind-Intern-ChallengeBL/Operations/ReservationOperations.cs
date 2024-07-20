@@ -10,7 +10,7 @@
     /// <param name="hotDeskBookingSystemContext">
     /// Hot desk booking system context.
     /// </param>
-    public class ReservationOperations(HotDeskBookingSystemContext hotDeskBookingSystemContext)
+    public class ReservationOperations(HotDeskBookingSystemContext hotDeskBookingSystemContext) : IReservationOperations
     {
         /// <summary>
         /// Hot desk booking system context.
@@ -24,13 +24,12 @@
         /// New reservation to add.
         /// </param>
         /// <returns>
-        /// True, if reservation was made correctly, otherwise false.
+        /// A <see cref="Task"/> representing the asynchronous operation.
         /// </returns>
-        public bool AddNewReservation(Reservation newReservation)
+        public async Task AddNewReservation(Reservation newReservation)
         {
-            this.hotDeskBookingSystemContexts.Reservations.Add(newReservation);
-            this.hotDeskBookingSystemContexts.SaveChanges();
-            return true;
+            await this.hotDeskBookingSystemContexts.Reservations.AddAsync(newReservation);
+            await this.hotDeskBookingSystemContexts.SaveChangesAsync();
         }
 
         /// <summary>
@@ -39,12 +38,12 @@
         /// <returns>
         /// All reservations.
         /// </returns>
-        public IList<Reservation> GetAllReservation()
+        public async Task<IList<Reservation>> GetAllReservation()
         {
-            return this.hotDeskBookingSystemContexts.Reservations
+            return await this.hotDeskBookingSystemContexts.Reservations
                 .Include(r => r.Employee!)
                 .Include(r => r.Desk!)
-                .ToList(); // Null forgiving null.
+                .ToListAsync(); // Null forgiving null.
         }
 
         /// <summary>
@@ -56,13 +55,13 @@
         /// <returns>
         /// Reservation objects.
         /// </returns>
-        public IList<Reservation>? GetAllReservationByUserId(int employeeId)
+        public async Task<IList<Reservation>?> GetAllReservationByUserId(int employeeId)
         {
-            return this.hotDeskBookingSystemContexts.Reservations
+            return await this.hotDeskBookingSystemContexts.Reservations
                 .Include(r => r.Employee)
                 .Include(r => r.Desk)
                 .Where(r => r.EmployeeId == employeeId)
-                .ToList();
+                .ToListAsync();
         }
 
         /// <summary>
@@ -74,12 +73,12 @@
         /// <returns>
         /// Reservation object.
         /// </returns>
-        public Reservation? GetAllReservationById(int reservationId)
+        public async Task<Reservation?> GetAllReservationById(int reservationId)
         {
-            return this.hotDeskBookingSystemContexts.Reservations
+            return await this.hotDeskBookingSystemContexts.Reservations
                 .Include(r => r.Employee)
                 .Include(r => r.Desk)
-                .SingleOrDefault(r => r.Id == reservationId);
+                .SingleOrDefaultAsync(r => r.Id == reservationId);
         }
 
         /// <summary>
@@ -89,18 +88,12 @@
         /// Reservation object to be updated.
         /// </param>
         /// <returns>
-        /// True, if update went correctly, otherwise false.
+        /// A <see cref="Task"/> representing the asynchronous operation.
         /// </returns>
-        public bool UpdateReservation(Reservation reservation)
+        public async Task UpdateReservation(Reservation reservation)
         {
-            if (reservation == null)
-            {
-                return false;
-            }
-
             this.hotDeskBookingSystemContexts.Reservations.Update(reservation);
-            this.hotDeskBookingSystemContexts.SaveChanges();
-            return true;
+            await this.hotDeskBookingSystemContexts.SaveChangesAsync();
         }
 
         /// <summary>
@@ -109,10 +102,13 @@
         /// <param name="reservationToDelete">
         /// Reservation to be deleted.
         /// </param>
-        public void RemoveReservation(Reservation reservationToDelete)
+        /// <returns>
+        /// A <see cref="Task"/> representing the asynchronous operation.
+        /// </returns>
+        public async Task RemoveReservation(Reservation reservationToDelete)
         {
             this.hotDeskBookingSystemContexts.Remove(reservationToDelete);
-            this.hotDeskBookingSystemContexts.SaveChanges();
+            await this.hotDeskBookingSystemContexts.SaveChangesAsync();
         }
     }
 }

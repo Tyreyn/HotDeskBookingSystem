@@ -60,18 +60,18 @@
         /// OkObjectResult -> string JSON of list desk object.
         /// </returns>
         [HttpGet("GetAvailableDesks")]
-        public IActionResult GetAvailableDesks()
+        public async Task<IActionResult> GetAvailableDesks()
         {
             var userIdClaims = this.User?.FindFirst(ClaimTypes.NameIdentifier);
             string? userId = userIdClaims == null ? string.Empty : userIdClaims.Value.ToString();
             var roleClaims = this.User?.FindFirst(ClaimTypes.Role);
             string? role = userIdClaims == null ? string.Empty : roleClaims.Value.ToString();
-            this.reservationService.CheckIfReservationChanged();
-            IList<Desk>? desks = this.deskService.GetDesks();
+            await this.reservationService.CheckIfReservationChanged();
+            IList<Desk>? desks = await this.deskService.GetDesks();
 
             if (role != "admin")
             {
-                IList<Reservation>? userReservations = this.reservationService.GetReservationByUserId(int.Parse(userId));
+                IList<Reservation>? userReservations = await this.reservationService.GetReservationByUserId(int.Parse(userId));
                 desks.Where(d => d.Reservations != null).ToList().ForEach(d => d.Reservations = null);
                 if (userReservations.Count > 0)
                 {
@@ -108,10 +108,10 @@
         /// OkObjectResult -> string JSON of list desk object.
         /// <returns>
         [HttpGet("FilterDesksByLocation")]
-        public IActionResult FilterDesksByLocation(string filter)
+        public async Task<IActionResult> FilterDesksByLocation(string filter)
         {
-            this.reservationService.CheckIfReservationChanged();
-            IList<Desk>? desks = this.deskService.GetDesks();
+            await this.reservationService.CheckIfReservationChanged();
+            IList<Desk>? desks = await this.deskService.GetDesks();
             string? role = this.User?.FindFirst(ClaimTypes.Role).Value.ToString();
 
             if (role != "admin")
@@ -131,10 +131,10 @@
         /// OkObjectResult - JSON string of location list.
         /// </returns>
         [HttpPost("GetAllLocations")]
-        public IActionResult GetAllLocations()
+        public async Task<IActionResult> GetAllLocations()
         {
-            this.reservationService.CheckIfReservationChanged();
-            IList<Location>? locations = this.locationService.GetLocations();
+            await this.reservationService.CheckIfReservationChanged();
+            IList<Location>? locations = await this.locationService.GetLocations();
             string locationsJson = JsonConvert.SerializeObject(locations, this.options);
             return this.Ok(locationsJson);
         }
@@ -158,14 +158,14 @@
         /// Message.
         /// </returns>
         [HttpPost("MakeReservation")]
-        public IActionResult MakeReservation(
+        public async Task<IActionResult> MakeReservation(
             int deskId,
             DateTime dateStart,
             DateTime dateEnd)
         {
             string? userId = this.User?.FindFirst(ClaimTypes.NameIdentifier).Value.ToString();
             string? userEmail = this.User?.FindFirst(ClaimTypes.Email).Value.ToString();
-            (bool, string) response = this.reservationService.MakeReservation(
+            (bool, string) response = await this.reservationService.MakeReservation(
                 new Reservation
                 {
                     EmployeeId = int.Parse(userId),
@@ -198,10 +198,10 @@
         /// Message.
         /// </returns>
         [HttpPost("ChangeReservationDesk")]
-        public IActionResult ChangeReservationDesk(int reservationId, int newDeskId)
+        public async Task<IActionResult> ChangeReservationDesk(int reservationId, int newDeskId)
         {
             string? userId = this.User?.FindFirst(ClaimTypes.NameIdentifier).Value.ToString();
-            (bool, string) response = this.reservationService.ChangeReservationDesk(reservationId, newDeskId, int.Parse(userId));
+            (bool, string) response = await this.reservationService.ChangeReservationDesk(reservationId, newDeskId, int.Parse(userId));
 
             if (response.Item1)
             {

@@ -1,81 +1,81 @@
-[10:56:07 FTL] Delete database after test.
-[10:56:07 INF] Setup API with in memory database
-[10:56:07 INF] Create API client
+[11:32:22 FTL] Delete database after test.
+[11:32:22 INF] Setup API with in memory database
+[11:32:22 INF] Create API client
 info: Microsoft.EntityFrameworkCore.Update[30100]
       Saved 3 entities to in-memory store.
-[10:56:08 INF] Post request to http://localhost//AnonymousUser/Login?email=admin@admin.com&password=Admin*123 url
+[11:32:23 INF] Post request to http://localhost//AnonymousUser/Login?email=admin@admin.com&password=Admin*123 url
 warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
       Failed to determine the https port for redirect.
-[10:56:09 INF] Status code from response OK
-[10:56:09 INF] Response: {"success":true,"message":"Basic YWRtaW5AYWRtaW4uY29tOkFkbWluKjEyMw=="}
-[10:56:09 INF] Response success value is as expected.
+[11:32:23 INF] Status code from response OK
+[11:32:23 INF] Response: {"success":true,"message":"Basic YWRtaW5AYWRtaW4uY29tOkFkbWluKjEyMw=="}
+[11:32:23 INF] Response success value is as expected.
  Actual: True, Expected: True
-[10:56:09 INF] Response message value is as expected.
+[11:32:23 INF] Response message value is as expected.
  Actual: True, Expected: True
-[10:56:09 INF] Starting test TryToGetDesksAsAdmin
-[10:56:09 INF] add desk to location: 1
-[10:56:09 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
+[11:32:23 INF] Starting test TryToGetDesksAsAdmin
+[11:32:23 INF] add desk to location: 1
+[11:32:23 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
 info: Microsoft.EntityFrameworkCore.Update[30100]
       Saved 1 entities to in-memory store.
-[10:56:09 INF] Status code from response OK
-[10:56:09 INF] Response: 
-[10:56:09 INF] add desk to location: 1
-[10:56:09 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
+[11:32:23 INF] Status code from response OK
+[11:32:23 INF] Response: 
+[11:32:23 INF] add desk to location: 1
+[11:32:23 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
 info: Microsoft.EntityFrameworkCore.Update[30100]
       Saved 1 entities to in-memory store.
-[10:56:09 INF] Status code from response OK
-[10:56:09 INF] Response: 
-[10:56:09 INF] add desk to location: 1
-[10:56:09 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
+[11:32:23 INF] Status code from response OK
+[11:32:23 INF] Response: 
+[11:32:23 INF] add desk to location: 1
+[11:32:23 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
 info: Microsoft.EntityFrameworkCore.Update[30100]
       Saved 1 entities to in-memory store.
-[10:56:09 INF] Status code from response OK
-[10:56:09 INF] Response: 
-[10:56:09 INF] add desk to location: 1
-[10:56:09 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
+[11:32:24 INF] Status code from response OK
+[11:32:24 INF] Response: 
+[11:32:24 INF] add desk to location: 1
+[11:32:24 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
 info: Microsoft.EntityFrameworkCore.Update[30100]
       Saved 1 entities to in-memory store.
-[10:56:09 INF] Status code from response OK
-[10:56:09 INF] Response: 
-[10:56:09 INF] add desk to location: 1
-[10:56:09 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
+[11:32:24 INF] Status code from response OK
+[11:32:24 INF] Response: 
+[11:32:24 INF] add desk to location: 1
+[11:32:24 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
 info: Microsoft.EntityFrameworkCore.Update[30100]
       Saved 1 entities to in-memory store.
-[10:56:09 INF] Status code from response OK
-[10:56:09 INF] Response: 
-[10:56:09 INF] add desk to location: 1
-[10:56:09 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
+[11:32:24 INF] Status code from response OK
+[11:32:24 INF] Response: 
+[11:32:24 INF] add desk to location: 1
+[11:32:24 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
 info: Microsoft.EntityFrameworkCore.Update[30100]
       Saved 1 entities to in-memory store.
-[10:56:09 INF] Status code from response OK
-[10:56:09 INF] Response: 
-[10:56:09 INF] add desk to location: 1
-[10:56:09 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
+[11:32:24 INF] Status code from response OK
+[11:32:24 INF] Response: 
+[11:32:24 INF] add desk to location: 1
+[11:32:24 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
 info: Microsoft.EntityFrameworkCore.Update[30100]
       Saved 1 entities to in-memory store.
-[10:56:09 INF] Status code from response OK
-[10:56:09 INF] Response: 
-[10:56:09 INF] add desk to location: 1
-[10:56:09 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
+[11:32:24 INF] Status code from response OK
+[11:32:24 INF] Response: 
+[11:32:24 INF] add desk to location: 1
+[11:32:24 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
 info: Microsoft.EntityFrameworkCore.Update[30100]
       Saved 1 entities to in-memory store.
-[10:56:09 INF] Status code from response OK
-[10:56:09 INF] Response: 
-[10:56:09 INF] add desk to location: 1
-[10:56:09 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
+[11:32:24 INF] Status code from response OK
+[11:32:24 INF] Response: 
+[11:32:24 INF] add desk to location: 1
+[11:32:24 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
 info: Microsoft.EntityFrameworkCore.Update[30100]
       Saved 1 entities to in-memory store.
-[10:56:09 INF] Status code from response OK
-[10:56:09 INF] Response: 
-[10:56:09 INF] add desk to location: 1
-[10:56:09 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
+[11:32:24 INF] Status code from response OK
+[11:32:24 INF] Response: 
+[11:32:24 INF] add desk to location: 1
+[11:32:24 INF] Post request to http://localhost///Admin/AddNewDesk?locationId=1 url
 info: Microsoft.EntityFrameworkCore.Update[30100]
       Saved 1 entities to in-memory store.
-[10:56:09 INF] Status code from response OK
-[10:56:09 INF] Response: 
-[10:56:09 INF] Post request to http://localhost///Employee/GetAvailableDesks url
-[10:56:09 INF] Status code from response OK
-[10:56:09 INF] Response: [
+[11:32:24 INF] Status code from response OK
+[11:32:24 INF] Response: 
+[11:32:24 INF] Post request to http://localhost///Employee/GetAvailableDesks url
+[11:32:24 INF] Status code from response OK
+[11:32:24 INF] Response: [
   {
     "Id": 1,
     "IsAvailable": false,
@@ -737,8 +737,8 @@ info: Microsoft.EntityFrameworkCore.Update[30100]
     "Reservations": []
   }
 ]
-[10:56:09 INF] Cleaning after test
-[10:56:09 ERR] Delete database after test.
-[10:56:09 INF] 
+[11:32:24 INF] Cleaning after test
+[11:32:24 ERR] Delete database after test.
+[11:32:24 INF] 
 
 ****************************************************************************************************

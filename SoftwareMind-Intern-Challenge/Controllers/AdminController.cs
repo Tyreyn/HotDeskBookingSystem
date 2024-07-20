@@ -51,9 +51,9 @@
         /// OkObjectResult.
         /// </returns>
         [HttpPost("AddNewDesk")]
-        public IActionResult AddNewDesk(int locationId = 1)
+        public async Task<IActionResult> AddNewDesk(int locationId = 1)
         {
-            this.deskService.AddDesk(locationId);
+            await this.deskService.AddDesk(locationId);
             return this.Ok();
         }
 
@@ -67,9 +67,9 @@
         /// OkObjectResult.
         /// </returns>
         [HttpPost("ChangeDeskStatus")]
-        public IActionResult ChangeDeskStatus(int deskId)
+        public async Task<IActionResult> ChangeDeskStatus(int deskId)
         {
-            this.deskService.ChangeDeskAvailable(deskId);
+            await this.deskService.ChangeDeskAvailable(deskId);
             return this.Ok();
         }
 
@@ -87,9 +87,9 @@
         /// T2 - message.
         /// </returns>
         [HttpPost("ChangeDeskLocation")]
-        public IActionResult ChangeDeskLocation(int locationId, int deskId)
+        public async Task<IActionResult> ChangeDeskLocation(int locationId, int deskId)
         {
-            (bool, string) response = this.deskService.ChangeDeskLocation(locationId, deskId);
+            (bool, string) response = await this.deskService.ChangeDeskLocation(locationId, deskId);
             if (response.Item1)
             {
                 return this.Ok(new { Success = true, Message = response.Item2 });
@@ -109,9 +109,9 @@
         /// T2 - message.
         /// </returns>
         [HttpPost("DeleteDesk")]
-        public IActionResult DeleteDesk(int deskId)
+        public async Task<IActionResult> DeleteDesk(int deskId)
         {
-            (bool, string) response = this.deskService.DeleteDesk(deskId);
+            (bool, string) response = await this.deskService.DeleteDesk(deskId);
             if (response.Item1)
             {
                 return this.Ok(new { Success = true, Message = response.Item2 });
@@ -130,10 +130,10 @@
         /// OkObjectResult.
         /// </returns>
         [HttpPost("AddNewLocation")]
-        public IActionResult AddNewLocation(string locationName)
+        public async Task<IActionResult> AddNewLocation(string locationName)
         {
             Location location = new Location { Name = locationName };
-            this.locationService.AddNewLocation(location);
+            await this.locationService.AddNewLocation(location);
             return this.Ok();
         }
 
@@ -147,9 +147,9 @@
         /// OkObjectResult.
         /// </returns>
         [HttpPost("DeleteLocation")]
-        public IActionResult DeleteLocation(int locationId)
+        public async Task<IActionResult> DeleteLocation(int locationId)
         {
-            (bool, string) response = this.locationService.DeleteLocation(locationId);
+            (bool, string) response = await this.locationService.DeleteLocation(locationId);
             if (response.Item1)
             {
                 return this.Ok(new { Success = true, Message = response.Item2 });
@@ -172,9 +172,9 @@
         /// T2 - message.
         /// </returns>
         [HttpPost("ChangeLocationName")]
-        public IActionResult ChangeLocationName(int locationId,  string newName)
+        public async Task<IActionResult> ChangeLocationName(int locationId,  string newName)
         {
-            (bool, string) response = this.locationService.ChangeLocationName(locationId, newName);
+            (bool, string) response = await this.locationService.ChangeLocationName(locationId, newName);
             if (response.Item1)
             {
                 return this.Ok(new { Success = true, Message = response.Item2 });

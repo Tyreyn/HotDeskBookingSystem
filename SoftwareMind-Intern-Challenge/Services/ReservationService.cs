@@ -37,7 +37,7 @@
         /// T1 - true, if reservation made correctly, otherwise false.
         /// T2 - message.
         /// </returns>
-        public (bool, string) MakeReservation(Reservation newReservation, string employeeEmail)
+        public async Task<(bool, string)> MakeReservation(Reservation newReservation, string employeeEmail)
         {
             DateTime currentDate = DateTime.Now;
 
@@ -54,7 +54,7 @@
                 return (false, "Cannot book a desk for more than a week.");
             }
 
-            Desk? desk = this.deskOperations.GetDeskById(newReservation.DeskId);
+            Desk? desk = await this.deskOperations.GetDeskById(newReservation.DeskId);
 
             if (desk == null)
             {
@@ -66,9 +66,8 @@
             }
 
             desk.IsAvailable = false;
-            this.deskOperations.UpdateDesk(desk);
-            newReservation.Desk = desk;
-            this.reservationOperations.AddNewReservation(newReservation);
+            await this.deskOperations.UpdateDesk(desk);
+            await this.reservationOperations.AddNewReservation(newReservation);
 
             return (true, "Reservation has been made correctly");
         }
@@ -82,9 +81,9 @@
         /// <returns>
         /// List of user reservations.
         /// </returns>
-        public IList<Reservation>? GetReservationByUserId(int userId)
+        public async Task<IList<Reservation>?> GetReservationByUserId(int userId)
         {
-            return this.reservationOperations.GetAllReservationByUserId(userId);
+            return await this.reservationOperations.GetAllReservationByUserId(userId);
         }
 
         /// <summary>
@@ -103,10 +102,10 @@
         /// T1 - true, if reservation updated correctly, otherwise false.
         /// T2 - message.
         /// </returns>
-        public (bool, string) ChangeReservationDesk(int reservationId, int newDeskId, int userId)
+        public async Task<(bool, string)> ChangeReservationDesk(int reservationId, int newDeskId, int userId)
         {
-            Desk? newDesk = this.deskOperations.GetDeskById(newDeskId);
-            Reservation? reservation = this.reservationOperations.GetAllReservationById(reservationId);
+            Desk? newDesk = await this.deskOperations.GetDeskById(newDeskId);
+            Reservation? reservation = await this.reservationOperations.GetAllReservationById(reservationId);
             DateTime currentDate = DateTime.Now;
 
             if (newDesk == null)
@@ -131,27 +130,28 @@
 
             int? oldDeskId = reservation.DeskId;
             reservation.Desk.IsAvailable = true;
-            this.deskOperations.UpdateDesk(reservation.Desk);
+            await this.deskOperations.UpdateDesk(reservation.Desk);
             reservation.DeskId = newDesk.Id;
             newDesk.IsAvailable = false;
-            this.deskOperations.UpdateDesk(newDesk);
+            await this.deskOperations.UpdateDesk(newDesk);
 
-            this.reservationOperations.UpdateReservation(reservation);
+            await this.reservationOperations.UpdateReservation(reservation);
             return (true, $"Desk changed from {oldDeskId} to {newDeskId} in reservation {reservationId}");
         }
 
         /// <summary>
         /// Check if reservation can be deleted.
         /// </summary>
-        public void CheckIfReservationChanged()
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+        public async Task CheckIfReservationChanged()
         {
             DateTime currentDate = DateTime.Now;
-            IList<Reservation> reservations = this.reservationOperations.GetAllReservation();
+            IList<Reservation> reservations = await this.reservationOperations.GetAllReservation();
             foreach (Reservation reservation in reservations.Where(r => (currentDate - r.DateEnd) >= TimeSpan.FromDays(1)))
             {
                 reservation.Desk.IsAvailable = true;
-                this.deskOperations.UpdateDesk(reservation.Desk);
-                this.reservationOperations.RemoveReservation(reservation);
+                await this.deskOperations.UpdateDesk(reservation.Desk);
+                await this.reservationOperations.RemoveReservation(reservation);
             }
         }
     }

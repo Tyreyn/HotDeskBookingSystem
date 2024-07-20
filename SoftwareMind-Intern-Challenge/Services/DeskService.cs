@@ -27,12 +27,12 @@
         /// <returns>
         /// True, if added correctly.
         /// </returns>
-        public bool AddDesk(int locationId)
+        public async Task<bool> AddDesk(int locationId)
         {
             Desk newDesk = new Desk();
             newDesk.LocationId = locationId;
             newDesk.IsAvailable = locationId == 1 ? false : true;
-            this.deskOperations.AddDesk(newDesk);
+            await this.deskOperations.AddDesk(newDesk);
             return true;
         }
 
@@ -42,9 +42,9 @@
         /// <returns>
         /// List of desks.
         /// </returns>
-        public IList<Desk>? GetDesks()
+        public async Task<IList<Desk>?> GetDesks()
         {
-            return this.deskOperations.GetAllDesks();
+            return await this.deskOperations.GetAllDesks();
         }
 
         /// <summary>
@@ -60,9 +60,9 @@
         /// T1 - true, if desk location changed correctly, otherwise false.
         /// T2 - message.
         /// </returns>
-        public (bool, string) ChangeDeskLocation(int newLocationId, int deskId)
+        public async Task<(bool, string)> ChangeDeskLocation(int newLocationId, int deskId)
         {
-            Desk? deskToChange = this.deskOperations.GetDeskById(deskId);
+            Desk? deskToChange = await this.deskOperations.GetDeskById(deskId);
             if (deskToChange == null)
             {
                 return (false, "There is no desk with this ID");
@@ -70,14 +70,15 @@
 
             int oldLocationId = deskToChange.LocationId;
             deskToChange.LocationId = newLocationId;
-            deskToChange.Location = this.locationOperations.GetLocationById(newLocationId);
+            deskToChange.Location = await this.locationOperations.GetLocationById(newLocationId);
             deskToChange.IsAvailable = true;
 
-            bool result = this.deskOperations.UpdateDesk(deskToChange);
-            if (!result)
+            if (deskToChange.Location == null)
             {
-                return (false, "Something went wrong with updating location");
+                return (false, "There is no location with this ID");
             }
+
+            await this.deskOperations.UpdateDesk(deskToChange);
 
             return (true, $"Location of desk {deskId} changed from {oldLocationId} to {newLocationId}");
         }
@@ -91,9 +92,9 @@
         /// <returns>
         /// True, if desk availability changed correctly.
         /// </returns>
-        public bool ChangeDeskAvailable(int deskId)
+        public async Task<bool> ChangeDeskAvailable(int deskId)
         {
-            Desk? deskToBeChanged = this.deskOperations.GetDeskById(deskId);
+            Desk? deskToBeChanged = await this.deskOperations.GetDeskById(deskId);
 
             if (deskToBeChanged == null)
             {
@@ -102,7 +103,7 @@
 
             deskToBeChanged.IsAvailable = !deskToBeChanged.IsAvailable;
 
-            this.deskOperations.UpdateDesk(deskToBeChanged);
+            await this.deskOperations.UpdateDesk(deskToBeChanged);
             return true;
         }
 
@@ -116,9 +117,9 @@
         /// T1 - true, if deleted correctly, otherwise false.
         /// T2 - message.
         /// </returns>
-        public (bool, string) DeleteDesk(int deskId)
+        public async Task<(bool, string)> DeleteDesk(int deskId)
         {
-            Desk? deskToBeDeleted = this.deskOperations.GetDeskById(deskId);
+            Desk? deskToBeDeleted = await this.deskOperations.GetDeskById(deskId);
 
             if (deskToBeDeleted == null)
             {
@@ -130,7 +131,7 @@
                 return (false, "There is still reservations for this desk");
             }
 
-            this.deskOperations.DeleteDesk(deskToBeDeleted);
+            await this.deskOperations.DeleteDesk(deskToBeDeleted);
             return (true, $"Desk {deskId} deleted successfully");
         }
     }

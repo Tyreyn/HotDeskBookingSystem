@@ -8,12 +8,13 @@ using SoftwareMind_Intern_ChallengeDTO.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<HotDeskBookingSystemContext>(options =>
-{
-    options.UseMySQL(builder.Configuration.GetConnectionString("default"));
-    options.EnableSensitiveDataLogging();
-    options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-});
+builder.Services.AddDbContext<HotDeskBookingSystemContext>(
+    options =>
+        {
+            options.UseMySQL(builder.Configuration.GetConnectionString("default"));
+            options.EnableSensitiveDataLogging();
+            options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+        } , ServiceLifetime.Transient);
 
 builder.Services.AddSwaggerGen(c =>
 {
