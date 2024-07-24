@@ -6,6 +6,7 @@ office through an easy online booking system.
 Administration:
 - Manage locations (add/remove, can't remove if desk exists in location)
 - Manage desk in locations (add/remove if no reservation/make unavailable)
+- 
 Employees
 - Determine which desks are available to book or unavailable.
 - Filter desks based on location
