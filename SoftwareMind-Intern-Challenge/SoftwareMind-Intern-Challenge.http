@@ -1,6 +1,0 @@
-@SoftwareMind_Intern_Challenge_HostAddress = http://localhost:5168
-
-GET {{SoftwareMind_Intern_Challenge_HostAddress}}/Employee/GetAvailableDesks
-Accept: application/json
-
-###

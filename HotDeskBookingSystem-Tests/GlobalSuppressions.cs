@@ -1,0 +1,20 @@
+﻿// This file is used by Code Analysis to maintain SuppressMessage
+// attributes that are applied to this project.
+// Project-level suppressions either have no target or are given
+// a specific target and scoped to a namespace, type, member, etc.
+
+using System.Diagnostics.CodeAnalysis;
+
+[assembly: SuppressMessage("Minor Code Smell", "S3604:Member initializer values should not be redundant", Justification = "<Oczekujące>", Scope = "member", Target = "~F:SoftwareMind_Intern_Challenge_Api_Tests.Helpers.SimpleOperations.testClient")]
+[assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1633:File should have header", Justification = "<Oczekujące>", Scope = "namespace", Target = "~N:SoftwareMind_Intern_Challenge_Api_Tests.Helpers")]
+[assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1633:File should have header", Justification = "<Oczekujące>", Scope = "namespace", Target = "~N:SoftwareMind_Intern_Challenge_Api_Tests")]
+[assembly: SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "<Oczekujące>", Scope = "member", Target = "~M:SoftwareMind_Intern_Challenge_Api_Tests.AdminTests.DeskOperationsScenario(System.String,System.String,System.Int32)")]
+[assembly: SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "<Oczekujące>", Scope = "member", Target = "~M:SoftwareMind_Intern_Challenge_Api_Tests.AdminTests.LoginAsAdminAndGetBasicToken~System.String")]
+[assembly: SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "<Oczekujące>", Scope = "member", Target = "~M:SoftwareMind_Intern_Challenge_Api_Tests.AnonymousTests.CreateAccountTests_ShouldGetExpectedResults(SoftwareMind_Intern_ChallengeDTO.DataObjects.Employee,Microsoft.AspNetCore.Mvc.OkObjectResult)")]
+[assembly: SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "<Oczekujące>", Scope = "member", Target = "~M:SoftwareMind_Intern_Challenge_Api_Tests.AnonymousTests.LoginToAccount_ShouldGetExpectedResults(SoftwareMind_Intern_ChallengeDTO.DataObjects.Employee,Microsoft.AspNetCore.Mvc.OkObjectResult)")]
+[assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1633:File should have header", Justification = "<Oczekujące>")]
+[assembly: SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "<Oczekujące>", Scope = "member", Target = "~M:SoftwareMind_Intern_Challenge_Api_Tests.Helpers.SimpleOperations.MakeReservation(System.Int32,System.String,System.String)")]
+[assembly: SuppressMessage("Structure", "NUnit1032:An IDisposable field/property should be Disposed in a TearDown method", Justification = "<Oczekujące>", Scope = "member", Target = "~F:SoftwareMind_Intern_Challenge_Api_Tests.AnonymousTests.testClient")]
+[assembly: SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "<Oczekujące>", Scope = "member", Target = "~M:SoftwareMind_Intern_Challenge_Api_Tests.AnonymousTests.LoginToAccount_ShouldGetExpectedResults(SoftwareMind_Intern_ChallengeDTO.DataObjects.Employee,System.String,System.String)")]
+[assembly: SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "<Oczekujące>", Scope = "member", Target = "~M:SoftwareMind_Intern_Challenge_Api_Tests.Helpers.SimpleOperations.CheckIfResponseIsAsExpected(System.String,System.String,System.String)~System.Boolean")]
+[assembly: SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "<Oczekujące>", Scope = "member", Target = "~M:SoftwareMind_Intern_Challenge_Api_Tests.Helpers.SimpleOperations.LoginToAccount(System.String,System.String,System.String,System.String)~System.String")]

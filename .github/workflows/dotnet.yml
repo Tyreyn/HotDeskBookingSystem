@@ -16,9 +16,9 @@ jobs:
         configuration: [Debug]
     runs-on: windows-latest
     env:
-      Solution_Name: SoftwareMind-Intern-Challenge/SoftwareMind-Intern-Challenge.sln
-      Project_Name: SoftwareMind-Intern-Challenge/SoftwareMind-Intern-Challenge.csproj
-      Test_Project_Path: SoftwareMind-Intern-Challenge-Api-Tests/SoftwareMind-Intern-Challenge-Api-Tests.csproj
+      Solution_Name: HotDeskBookingSystem/HotDeskBookingSystem.sln
+      Project_Name: HotDeskBookingSystem/HotDeskBookingSystem.csproj
+      Test_Project_Path: HotDeskBookingSystem-Tests/HotDeskBookingSystem-Tests.csproj
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -36,4 +36,4 @@ jobs:
         Configuration: ${{ matrix.configuration }}
     - name: Execute backend unit tests
       run: dotnet test
-      working-directory: SoftwareMind-Intern-Challenge
+      working-directory: HotDeskBookingSystem

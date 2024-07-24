@@ -1,0 +1,73 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.App {
+    text-align: center;
+    margin: 20px;
+}
+
+header {
+    background-color: #282c34;
+    padding: 20px;
+    color: white;
+}
+
+    header nav {
+        margin-top: 10px;
+    }
+
+        header nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+
+            header nav a:hover {
+                text-decoration: underline;
+            }
+
+.location-list,
+.desk-list,
+.reservation-list,
+.admin-panel,
+.reservation-entity {
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+    .location-list ul,
+    .desk-list ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .location-list li,
+    .desk-list li {
+        margin: 10px 0;
+        display: flex;
+        justify-content: space-between;
+    }
+
+button {
+    margin-left: 10px;
+    padding: 5px 10px;
+}
+
+input, select {
+    margin: 10px 0;
+    padding: 10px;
+    width: 80%;
+    max-width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+table{
+
+}
