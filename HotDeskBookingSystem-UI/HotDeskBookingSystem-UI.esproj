@@ -8,4 +8,14 @@
     <!-- Folder where production build objects will be placed -->
     <PublishAssetsDirectory>$(MSBuildProjectDirectory)\dist</PublishAssetsDirectory>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="src\Components\" />
+    <Folder Include="src\Routes\" />
+    <Folder Include="src\Security\" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties tsconfig_1json__JsonSchema="" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

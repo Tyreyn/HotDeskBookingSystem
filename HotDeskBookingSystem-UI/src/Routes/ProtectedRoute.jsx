@@ -1,6 +1,6 @@
 import { useEffect, React } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
-import { useAuth } from "../AuthProvider";
+import { useAuth } from "../Security/AuthProvider";
 
 const ProtectedRoute = () => {
     const { auth } = useAuth();

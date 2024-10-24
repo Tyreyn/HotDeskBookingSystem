@@ -1,73 +1,63 @@
-﻿body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+﻿html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
     margin: 0;
-    padding: 0;
+    display: flow;
+    justify-content: center;
 }
 
-.App {
+.bg {
+    animation: slide 10s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #FFD5BD 50%, #EBBCA2 50%);
+    bottom: 0;
+    left: -50%;
+    opacity: .8;
+    position: fixed;
+    right: -50%;
+    top: 0;
+    z-index: -1;
+}
+
+.bg2 {
+    animation-direction: alternate-reverse;
+    animation-duration: 8s;
+}
+
+.bg3 {
+    animation-duration: 9s;
+}
+
+.bg4 {
+    animation: slide 20s ease-in-out infinite alternate;
+    background-image: linear-gradient(60deg, #445973 50%, #8294AA 50%);
+}
+
+.content {
+    background-color: rgba(255,255,255,.8);
+    border-radius: .5em;
+    box-shadow: 0 0 .25em rgba(0,0,0,.5);
+    box-sizing: border-box;
+    left: 50%;
+    padding: 10vmin;
+    position: fixed;
     text-align: center;
-    margin: 20px;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
-header {
-    background-color: #282c34;
-    padding: 20px;
-    color: white;
+h1 {
+    font-family: monospace;
 }
 
-    header nav {
-        margin-top: 10px;
+@keyframes slide {
+    0% {
+        transform: translateX(-25%);
     }
 
-        header nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-        }
-
-            header nav a:hover {
-                text-decoration: underline;
-            }
-
-.location-list,
-.desk-list,
-.reservation-list,
-.admin-panel,
-.reservation-entity {
-    background-color: white;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-    .location-list ul,
-    .desk-list ul {
-        list-style: none;
-        padding: 0;
+    100% {
+        transform: translateX(25%);
     }
-
-    .location-list li,
-    .desk-list li {
-        margin: 10px 0;
-        display: flex;
-        justify-content: space-between;
-    }
-
-button {
-    margin-left: 10px;
-    padding: 5px 10px;
-}
-
-input, select {
-    margin: 10px 0;
-    padding: 10px;
-    width: 80%;
-    max-width: 300px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-table{
-
 }

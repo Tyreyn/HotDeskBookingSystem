@@ -4,9 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotDeskBookingSystem", "HotDeskBookingSystem.csproj", "{9E26D68D-EFBC-48EC-84D9-E2948F79CC78}"
-	ProjectSection(ProjectDependencies) = postProject
-		{5A83A8CB-3724-4F1F-BBCF-6A6F4C3B3E64} = {5A83A8CB-3724-4F1F-BBCF-6A6F4C3B3E64}
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotDeskBookingSystem-DTO", "..\HotDeskBookingSystem-DTO\HotDeskBookingSystem-DTO.csproj", "{EB451102-09BC-4C6C-ADAF-8EF1C6F787B1}"
 EndProject
@@ -17,9 +14,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "HotDeskBookingSystem-UI", "..\HotDeskBookingSystem-UI\HotDeskBookingSystem-UI.esproj", "{5A83A8CB-3724-4F1F-BBCF-6A6F4C3B3E64}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotDeskBookingSystem-Tests", "..\HotDeskBookingSystem-Tests\HotDeskBookingSystem-Tests.csproj", "{C5E33DCE-61D7-4BB6-94D2-556358B13A0C}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "hotdeskbookingsystem-ui", "..\HotDeskBookingSystem-UI\hotdeskbookingsystem-ui.esproj", "{632CEA00-8F3C-4F75-AA7B-6C2CF54D4A35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,16 +36,16 @@ Global
 		{4DC51EB1-BC1E-4E19-97B5-580AE5409A36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DC51EB1-BC1E-4E19-97B5-580AE5409A36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DC51EB1-BC1E-4E19-97B5-580AE5409A36}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5A83A8CB-3724-4F1F-BBCF-6A6F4C3B3E64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5A83A8CB-3724-4F1F-BBCF-6A6F4C3B3E64}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5A83A8CB-3724-4F1F-BBCF-6A6F4C3B3E64}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{5A83A8CB-3724-4F1F-BBCF-6A6F4C3B3E64}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5A83A8CB-3724-4F1F-BBCF-6A6F4C3B3E64}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5A83A8CB-3724-4F1F-BBCF-6A6F4C3B3E64}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{C5E33DCE-61D7-4BB6-94D2-556358B13A0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C5E33DCE-61D7-4BB6-94D2-556358B13A0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5E33DCE-61D7-4BB6-94D2-556358B13A0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5E33DCE-61D7-4BB6-94D2-556358B13A0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{632CEA00-8F3C-4F75-AA7B-6C2CF54D4A35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{632CEA00-8F3C-4F75-AA7B-6C2CF54D4A35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{632CEA00-8F3C-4F75-AA7B-6C2CF54D4A35}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{632CEA00-8F3C-4F75-AA7B-6C2CF54D4A35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{632CEA00-8F3C-4F75-AA7B-6C2CF54D4A35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{632CEA00-8F3C-4F75-AA7B-6C2CF54D4A35}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

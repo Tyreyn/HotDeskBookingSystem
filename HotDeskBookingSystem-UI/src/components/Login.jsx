@@ -1,11 +1,16 @@
 import { useState } from "react";
-import { useAuth } from "../AuthProvider";
+import { useAuth } from "../Security/AuthProvider";
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box/Box';
+import { FormControl, InputLabel, Input, Grid2, styled, AppBar, Toolbar, IconButton } from "@mui/material";
 
 const Login = () => {
     const [input, setInput] = useState({
         email: "",
         password: "",
     });
+
+    const isDisabled = input.email === "" || input.password === "";
 
     const auth = useAuth();
 
@@ -19,7 +24,7 @@ const Login = () => {
         handlers[id](e); // <--proxy event to proper callback handler
     };
 
-    function handlesubmit_task1(e){
+    function handlesubmit_task1(e) {
         e.preventDefault();
         if (input.email !== "" && input.password !== "") {
             auth.loginAction(input);
@@ -28,7 +33,7 @@ const Login = () => {
         alert("Please provide a valid input");
     };
 
-    function handlesubmit_task2(e){
+    function handlesubmit_task2(e) {
         e.preventDefault();
         if (input.email !== "" && input.password !== "") {
             auth.createAccountAction(input);
@@ -46,39 +51,73 @@ const Login = () => {
     };
 
     return (
-        <form onSubmit={submitHandler}>
-            <div className="form_control">
-                <label htmlFor="user-email">Email:</label>
-                <input
-                    type="email"
-                    id="user-email"
-                    name="email"
-                    placeholder="example@yahoo.com"
-                    aria-describedby="user-email"
-                    aria-invalid="false"
-                    onChange={handleInput}
-                />
-                <div id="user-email" className="sr-only">
-                    Please enter a valid email, test@test.com
-                </div>
-            </div>
-            <div className="form_control">
-                <label htmlFor="password">Password:</label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    aria-describedby="user-password"
-                    aria-invalid="false"
-                    onChange={handleInput}
-                />
-                <div id="user-password" className="sr-only">
-                    your password should be more than 6 character
-                </div>
-            </div>
-            <button className="btn-submit" id="submit1" type="submit">Log in</button>
-            <button className="btn-submit" id="submit2" type="submit">Create Account</button>
-        </form>
+            <Box sx={{
+            width: "80vw",
+            marginLeft: "auto",
+            marginRight: "auto",
+            textAlign: "center",
+            boxShadow: "10",
+            borderRadius: 1,
+            backgroundColor: 'rgba(204, 200, 198, 60%)',
+        }}>
+            <AppBar position="static" sx={{ backgroundColor: 'rgba(204, 200, 198, 0%)', opacity: "0" } }>
+            </AppBar>
+                <form onSubmit={submitHandler}>
+                    <Grid2 container spacing={3} justifyContent="center" margin="2%">
+                        <Grid2 size={12}>
+                            <FormControl sx={{
+                                width: "0.8"
+                            }}>
+                                <InputLabel sx={{
+                                    '&.MuiInputLabel-shrink': {
+                                        color: '#5E738C'
+                                    }
+                                }}
+                                    htmlFor="user-email">Email:</InputLabel>
+                                <Input
+                                    sx={{
+                                        color: "#33455A",
+                                        ':after': { borderBottomColor: '#5E738C' },
+                                    }}
+                                    name="email"
+                                    placeholder="example@gmail.com"
+                                    aria-placeholder="example@gmail.com"
+                                    onChange={handleInput} />
+                            </FormControl>
+                        </Grid2>
+                        <Grid2 size={12}>
+                            <FormControl sx={{ width: "0.8" }}>
+                                <InputLabel sx={{
+                                    '&.MuiInputLabel-shrink': {
+                                        color: '#5E738C'
+                                    }
+                                }} htmlFor="user-password">Password:</InputLabel>
+                                <Input
+                                    sx={{
+                                        color: "#33455A",
+                                        ':after': { borderBottomColor: '#5E738C' },
+                                    }}
+                                    name="password"
+                                    onChange={handleInput} />
+                            </FormControl>
+                        </Grid2>
+                        <Grid2 size={6}>
+                            <Button type="submit" disabled={isDisabled} id="submit1" variant="contained" sx={{
+                                backgroundColor: 'rgba(204, 200, 198, 80%)', width: "0.9", color: "#33455A",
+                            }}>
+                                Log in
+                            </Button>
+                        </Grid2>
+                        <Grid2 size={6}>
+                            <Button type="submit" disabled={isDisabled} id="submit2" variant="contained" sx={{
+                                backgroundColor: 'rgba(204, 200, 198, 80%)', width: "0.9", color: "#33455A",
+                            }}>
+                                Create Account
+                            </Button>
+                        </Grid2>
+                    </Grid2>
+                </form>
+            </Box>
     );
 };
 

@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import Desk from './Entity/DeskEntity';
-import { TableHead, TableContainer, TableCell, TableRow, Input, Paper, TableBody, Button, Table } from "../../node_modules/@mui/material/index";
+import { Button, Container, Input, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import React, { useEffect, useState } from "react";
 
-
-const DeskDisplay = ({ auth }) => {
+const DeskDisplay = (auth) => {
     const [desks, setDesks] = useState([]);
     const [nameFilter, setNewNameFilter] = useState('');
     const [filteredDesks, setFilteredDesks] = useState(desks);
@@ -12,8 +10,21 @@ const DeskDisplay = ({ auth }) => {
         handleShowDesks();
     }, [])
 
-    const handleShowDesks = async () => {
-        const headerAuth = auth.replaceAll('"', '');
+
+    interface Desk {
+        LocationId: number;
+        Location: Location;
+        IsAvailable: boolean;
+        Id: number;
+    }
+
+    interface Location {
+        Id: number;
+        Name: string;
+    }
+
+    async function handleShowDesks(): Promise<Desk[]> {
+        const headerAuth = auth.auth.replaceAll('"', '');
         const response = await fetch('https://localhost:7147/Employee/GetAvailableDesks', {
             method: "GET",
             headers: {
@@ -27,9 +38,10 @@ const DeskDisplay = ({ auth }) => {
             setDesks(res);
             setFilteredDesks(res);
         }
+        return res;
     };
 
-    const handleFilterDesks = (nameFilter) => {
+    const handleFilterDesks = (nameFilter: string) => {
         setNewNameFilter(nameFilter);
         const filtered = desks.filter((desk) => (
             desk.Location.Name.toLowerCase().includes(nameFilter.toLowerCase())
@@ -37,12 +49,21 @@ const DeskDisplay = ({ auth }) => {
         setFilteredDesks(filtered);
     };
 
+    const deskList = filteredDesks.map((desk: Desk) => (
+
+        <TableCell key={desk.Id} sx={{ textalign: "center" }}>
+            <h2>{desk.LocationId}</h2>
+            <p>{desk.Location.Name}</p>
+        </TableCell>
+    ));
+
+
     return (
-        <TableContainer component={Paper} style={{ height: "1000", innerWidth: "100%" }}>
+        <Paper sx={{ padding: "2%", backgroundColor: 'rgba(204, 200, 198, 60%)', width: "80vw" }}>
             <Table>
                 <TableHead>
                     <TableRow>
-                        <TableCell>
+                        <TableCell sx={{ width: "60vw" }}>
                             <Input
                                 type="text"
                                 value={nameFilter}
@@ -50,25 +71,19 @@ const DeskDisplay = ({ auth }) => {
                                 placeholder="Filter desk by location"
                             />
                         </TableCell>
-                        <TableCell>
-                            <div>
-                                <Button onClick={handleShowDesks}>Refresh</Button>
-                            </div>
+                        <TableCell sx={{ width: "20vw", display: "flex", justifyContent: "center" }}>
+                            <Button onClick={handleShowDesks}>Refresh</Button>
                         </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     <TableRow>
-                        <TableCell style={{ textalign: "center" }}>
-                            <div>
-                                {(filteredDesks.length >= 1 ? <Desk desks={filteredDesks} /> : <div>No location with this name</div>)}
-                            </div>
-                        </TableCell>
+                        {deskList}
                     </TableRow>
                 </TableBody>
             </Table>
-        </TableContainer >
+        </Paper >
     );
 };
 
-export default DeskDisplay;
+export default DeskDisplay;   
