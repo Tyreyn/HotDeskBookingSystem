@@ -1,5 +1,5 @@
-import { Button, Container, Input, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Button, Input, Paper, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import { useEffect, useState } from "react";
 
 const DeskDisplay = (auth) => {
     const [desks, setDesks] = useState([]);
@@ -59,11 +59,11 @@ const DeskDisplay = (auth) => {
 
 
     return (
-        <Paper sx={{ padding: "2%", backgroundColor: 'rgba(204, 200, 198, 60%)', width: "80vw" }}>
+        <Paper sx={{ padding: "2%", backgroundColor: 'rgba(204, 200, 198, 60%)', width: "80vw"}}>
             <Table>
                 <TableHead>
                     <TableRow>
-                        <TableCell sx={{ width: "60vw" }}>
+                        <TableCell>
                             <Input
                                 type="text"
                                 value={nameFilter}

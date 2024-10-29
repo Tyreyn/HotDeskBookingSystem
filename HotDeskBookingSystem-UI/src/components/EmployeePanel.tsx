@@ -29,8 +29,8 @@ const EmployeePanel = (auth: string) => {
         const res = await response.json();
         console.log(res);
         if (res.length >>> 0) {
-            setDesks(res);
-            setFilteredDesks(res);
+            //setDesks(res);
+            //setFilteredDesks(res);
         }
         alert(res.message);
     };
@@ -48,8 +48,8 @@ const EmployeePanel = (auth: string) => {
         const res = await response.json();
         console.log(res);
         if (res.length >>> 0) {
-            setDesks(res);
-            setFilteredDesks(res);
+            //setDesks(res);
+            //setFilteredDesks(res);
         }
         alert(res.message);
     };
@@ -60,7 +60,7 @@ const EmployeePanel = (auth: string) => {
     };
 
     return (
-        <Paper sx={{ padding: "2%", backgroundColor: 'rgba(204, 200, 198, 60%)', width: "80vw" }}>
+        <Paper sx={{ padding: "2%", backgroundColor: 'rgba(204, 200, 198, 60%)', width: "inherit"}}>
             <Typography sx={{ flexGrow: "1", color: '#5E738C', fontWeight: "800" }}>Reservations</Typography>
             <Paper sx={{ padding: "2%", backgroundColor: 'rgba(204, 200, 198, 60%)', margin: "2%", display: "flex", justifyContent: "center" }}>
                 <form onSubmit={handleMakeReservation}>

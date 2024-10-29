@@ -1,15 +1,14 @@
 import "./App.css"
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import ProtectedRoute from './Routes/ProtectedRoute';
-import Login from './Components/Login';
-import Dashboard from './Components/Dashboard';
 import AuthProvider from './Security/AuthProvider';
-import { AppBar, Container, IconButton, Toolbar } from '@mui/material';
+import { Container } from '@mui/material';
+import Dashboard from "./components/Dashboard";
+import Login from "./components/Login";
 
 function App() {
     return (
         <Container className="App" sx={{
-            height: "100vh",
             width: "100vw",
             maxWidth: "100%",
             marginLeft: "auto",
