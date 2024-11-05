@@ -5,13 +5,14 @@ const DeskList = (auth) => {
     const [newDeskLocation, setNewDeskLocationCode] = useState('');
     const [deskToChange, setDeskToChangeCode] = useState('');
     const [deskToDelete, setDeskToDelete] = useState('');
+
     const handleAddDesk = async () => {
         event.preventDefault();
         let requestParam = '?locationId=1';
         if (newDeskCode) {
             requestParam = `?locationId=${newDeskCode}`;
         }
-        const headerAuth = auth.auth.auth.replaceAll('"', '');
+        const headerAuth = auth.auth.replaceAll('"', '');
         const response = await fetch(`https://localhost:7147/Admin/AddNewDesk${requestParam}`, {
             method: "POST",
             headers: {
@@ -27,6 +28,7 @@ const DeskList = (auth) => {
             alert("Something went wrong");
         }
     };
+
     const handleChangeDeskLocation = async () => {
         event.preventDefault();
         const headerAuth = auth.auth.auth.replaceAll('"', '');

@@ -1,5 +1,6 @@
-import { Button, Input, Paper, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import { Button, Grid2, Input, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import _ from "lodash";
 
 const DeskDisplay = (auth) => {
     const [desks, setDesks] = useState([]);
@@ -49,20 +50,40 @@ const DeskDisplay = (auth) => {
         setFilteredDesks(filtered);
     };
 
-    const deskList = filteredDesks.map((desk: Desk) => (
+    const deskList = () => {
+        const groupedByLocation = filteredDesks.reduce((result, item) => {
+            if (!result[item.LocationId]) {
+                result[item.LocationId] = [];
+            }
+            result[item.LocationId].push(item);
+            return result;
+        }, {});
 
-        <TableCell key={desk.Id} sx={{ textalign: "center" }}>
-            <h2>{desk.LocationId}</h2>
-            <p>{desk.Location.Name}</p>
-        </TableCell>
-    ));
+        return (
+            <TableRow>
+                {Object.keys(groupedByLocation).map(locationId => (
+                    <Paper key={locationId} sx={{ margin: "10px", padding: "2%", backgroundColor: 'rgba(204, 200, 198, 60%)' }}>
+                        <Typography sx={{ flexGrow: "1", color: '#5E738C', fontWeight: "800" }}>Location ID: {locationId}</Typography>
+                        <Grid2 container spacing={3} sx={{ justifyContent: "space-evenly" }}>
+                        {groupedByLocation[locationId].map(desk => (
+                            <Paper key={desk.Id} sx={{ backgroundColor: desk.IsAvailable ? 'rgba(204, 200, 198, 80%)' : 'rgba(166, 0, 55, 80%)' }}>
+                                <p>ID: {desk.Id}</p>
+                                <p>Is Available: {desk.IsAvailable ? "Yes" : "No"}</p>
+                            </Paper>
+                        ))}
+                        </Grid2>
+                    </Paper>
+                ))}
+            </TableRow>
+        );
+    };
 
 
     return (
-        <Paper sx={{ padding: "2%", backgroundColor: 'rgba(204, 200, 198, 60%)', width: "80vw"}}>
+        <Paper sx={{ padding: "2%", backgroundColor: 'rgba(204, 200, 198, 60%)', width: "80vw" }}>
             <Table>
                 <TableHead>
-                    <TableRow>
+                    <TableRow sx={{ display: "flex", justifyContent: "space-around" }}>
                         <TableCell>
                             <Input
                                 type="text"
@@ -76,10 +97,8 @@ const DeskDisplay = (auth) => {
                         </TableCell>
                     </TableRow>
                 </TableHead>
-                <TableBody>
-                    <TableRow>
-                        {deskList}
-                    </TableRow>
+                <TableBody sx={{ justifyItems: "center"}}>
+                    {deskList()}
                 </TableBody>
             </Table>
         </Paper >
