@@ -6,7 +6,6 @@ office through an easy online booking system.
 Administration:
 - Manage locations (add/remove, can't remove if desk exists in location)
 - Manage desk in locations (add/remove if no reservation/make unavailable)
-- 
 Employees
 - Determine which desks are available to book or unavailable.
 - Filter desks based on location
@@ -47,14 +46,24 @@ Location unusedDesks = new Location
 };
 
 ## Available operations in the UI
-Admin:
+#### Admin:
 - add new desk
 - add new location
 - delete desk
 - delete location
 - show desks(with reservation information)
 
-User:
+#### User:
 - make reservation
 - change desk in reservation
 - show desks(only with own reservation information)
+
+#### Login Page
+![Alt text](https://github.com/Tyreyn/HotDeskBookingSystem/blob/main/login.png "This is login image")
+
+#### User Panel
+![Alt text](https://github.com/Tyreyn/HotDeskBookingSystem/blob/main/dashboard_user.png)
+![Alt text](https://github.com/Tyreyn/HotDeskBookingSystem/blob/main/modal_user.png)
+
+#### Admin Panel
+![Alt text](https://github.com/Tyreyn/HotDeskBookingSystem/blob/main/dashboard_admin.png)

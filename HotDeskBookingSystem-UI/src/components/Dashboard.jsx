@@ -11,10 +11,11 @@ const AdminDashboard = ({ auth }) => (
     <Table sx={{ justifyContent: "center", display: "flex", marginTop: "10vh" }}>
         <TableBody sx={{ display: "flex", justifyContent: "space-around", alignContent: "space-between", flexWrap: "wrap" }}>
             <TableRow sx={{ width: "80vw", display: "block", justifyItems: "center" }}>
-                <TableCell sx={{ width:"35vw" }}><AdminPanel auth={auth}></AdminPanel></TableCell>
-                <TableCell sx={{ width: "35vw" }}><EmployeePanel auth={auth}></EmployeePanel></TableCell>
+                <TableCell sx={{ width: "35vw" }}><AdminPanel auth={auth}></AdminPanel></TableCell>
             </TableRow >
-            <TableRow sx={{ width: "80vw", display: "flex"}}><DeskDisplay auth={auth}></DeskDisplay></TableRow>
+            <TableRow sx={{ display: "block" }}>
+                <TableRow><DeskDisplay auth={auth}></DeskDisplay></TableRow>
+            </TableRow>
         </TableBody>
     </Table>
 );
@@ -23,7 +24,6 @@ const UserDashboard = ({ auth }) => (
     <Table sx={{ justifyContent: "center", display: "flex", marginTop: "10vh" }}>
         <TableBody sx={{ display: "contents", justifyContent: "space-around", alignContent: "space-between", flexWrap: "wrap", flexDirection: "column" }}>
             <TableRow sx={{ display: "block" }}>
-                <TableRow sx={{ width: "80vw"} }><EmployeePanel auth={auth}></EmployeePanel></TableRow>
                 <TableRow><DeskDisplay auth={auth}></DeskDisplay></TableRow>
             </TableRow>
         </TableBody>

@@ -3,6 +3,10 @@
     width: 100%;
 }
 
+td, th{
+    border-bottom: 0px !important;
+}
+
 body {
     margin: 0;
     display: flow;

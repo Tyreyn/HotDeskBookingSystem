@@ -96,7 +96,8 @@ const Login = () => {
                                     sx={{
                                         color: "#33455A",
                                         ':after': { borderBottomColor: '#5E738C' },
-                                    }}
+                                }}
+                                    type="password"
                                     name="password"
                                     onChange={handleInput} />
                             </FormControl>

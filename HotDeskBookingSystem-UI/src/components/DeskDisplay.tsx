@@ -1,8 +1,9 @@
 import { Button, Grid2, Input, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import _ from "lodash";
+import DeskComponent from "./DeskComponent";
 
-const DeskDisplay = (auth) => {
+const DeskDisplay = ({ auth }) => {
     const [desks, setDesks] = useState([]);
     const [nameFilter, setNewNameFilter] = useState('');
     const [filteredDesks, setFilteredDesks] = useState(desks);
@@ -25,7 +26,7 @@ const DeskDisplay = (auth) => {
     }
 
     async function handleShowDesks(): Promise<Desk[]> {
-        const headerAuth = auth.auth.replaceAll('"', '');
+        const headerAuth = auth.replaceAll('"', '');
         const response = await fetch('https://localhost:7147/Employee/GetAvailableDesks', {
             method: "GET",
             headers: {
@@ -63,12 +64,18 @@ const DeskDisplay = (auth) => {
             <TableRow>
                 {Object.keys(groupedByLocation).map(locationId => (
                     <Paper key={locationId} sx={{ margin: "10px", padding: "2%", backgroundColor: 'rgba(204, 200, 198, 60%)' }}>
-                        <Typography sx={{ flexGrow: "1", color: '#5E738C', fontWeight: "800" }}>Location ID: {locationId}</Typography>
+                        <Typography sx={{ flexGrow: "1", color: '#5E738C', fontWeight: "800" }}>
+                            Location name: {groupedByLocation[locationId].shift(0).Location.Name}
+                        </Typography>
                         <Grid2 container spacing={3} sx={{ justifyContent: "space-evenly" }}>
                         {groupedByLocation[locationId].map(desk => (
-                            <Paper key={desk.Id} sx={{ backgroundColor: desk.IsAvailable ? 'rgba(204, 200, 198, 80%)' : 'rgba(166, 0, 55, 80%)' }}>
-                                <p>ID: {desk.Id}</p>
-                                <p>Is Available: {desk.IsAvailable ? "Yes" : "No"}</p>
+                            <Paper key={desk.Id} sx={{
+                                backgroundColor:
+                                    desk.IsAvailable ?
+                                        'rgba(204, 200, 198, 80%)' :
+                                        (localStorage.getItem('role') === "user" && desk.Reservations) ? 'rgba(9,239,17, 80%)' : 'rgba(166, 0, 55, 80%)'
+                            }}>
+                                <DeskComponent Id={desk.Id} auth={auth} Reservations={desk.Reservations ? desk.Reservations : null}></DeskComponent>
                             </Paper>
                         ))}
                         </Grid2>
