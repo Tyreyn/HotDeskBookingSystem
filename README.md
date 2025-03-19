@@ -1,5 +1,4 @@
 # HotDeskBookingSystem
-## Description
 Hot desk booking system is a system which should designed to automate the reservation of desk in
 office through an easy online booking system.
 ## Requirements
